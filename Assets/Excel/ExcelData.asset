@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f4255c0a30e3345a64bb4004e47452, type: 3}
+  m_Name: ExcelData
+  m_EditorClassIdentifier: 
+  Sheet1:
+  - CodeName: 100
+    Name: "\uC790\uB3D9\uCC28 \uC131\uB2A5 \uAE30\uB85D\uBD80"
+    Inform: "\uCC28\uB7C9 \uC5F0\uC2DD\uC774\uB098 \uC8FC\uD589\uAC70\uB9AC\uC640
+      \uAC19\uC774 \uD574\uB2F9 \uC790\uB3D9\uCC28\uC758 \uAE30\uBCF8 \uC815\uBCF4\uC640
+      \uC0AC\uACE0 \uC774\uB825 \uC870\uD68C \uBC0F \uC218\uB9AC, \uC790\uB3D9\uCC28
+      \uAC80\uC0AC \uC774\uB825\uC5D0 \uB300\uD55C \uB0B4\uC6A9\uC774 \uAE30\uB85D\uB41C
+      \uC11C\uB958"
+  - CodeName: 200
+    Name: "\uBCF4\uD5D8 \uC774\uB825\uC11C"
+    Inform: "\uC911\uACE0\uCC28\uAC00 \uACFC\uAC70\uC5D0 \uACAA\uC5C8\uB358 \uC0AC\uACE0
+      \uBC0F \uBCF4\uD5D8 \uCCAD\uAD6C \uB0B4\uC5ED\uC744 \uAE30\uB85D\uD55C \uBB38\uC11C"
+  - CodeName: 300
+    Name: "\uC624\uC77C \uCEA1"
+    Inform: "\uC624\uC77C\uCEA1\uC740 \uC5D4\uC9C4\uC6B4\uC804\uC911 \uD280\uC5B4\uC624\uB978
+      \uC624\uC77C\uC758 \uB204\uC720\uB97C \uBC29\uC9C0\uD55C\uB2E4."
+  - CodeName: 400
+    Name: "\uCC28\uB7C9 \uC2A4\uB9C8\uD2B8 \uD0A4"
+    Inform: "\uC790\uB3D9\uCC28 \uC2DC\uB3D9\uC791\uC5C5\uC744 \uD560 \uB54C \uC0AC\uC6A9\uD568"
+  - CodeName: 500
+    Name: "\uB3D9\uC804"
+    Inform: "\uC790\uB3D9\uCC28 \uD578\uB4E4\uC758 \uC9C4\uB3D9\uC774 \uC2EC\uD558\uAC8C
+      \uB5A0\uB294\uC9C0 \uC54C\uC544\uBCF4\uB294\uB370 \uC0AC\uC6A9\uD568"
+  - CodeName: 600
+    Name: "\uC5D0\uC5B4\uCEE8 \uBC84\uD2BC"
+    Inform: "\uC5D0\uC5B4\uCEE8\uC744 \uC791\uB3D9\uD560 \uB54C \uC0AC\uC6A9\uD558\uB294
+      \uACF5\uC800\uBC84\uD2BC"
+  - CodeName: 700
+    Name: "\uCC3D\uBB38 \uBC84\uD2BC"
+    Inform: "\uCC3D\uBB38\uC744 \uC5EC\uB294\uB370 \uC0AC\uC6A9\uD558\uB294 \uACF5\uC800\uBC84\uD2BC"
+  - CodeName: 800
+    Name: "\uC790\uB3D9\uCC28 \uAE30\uC5B4\uBD09"
+    Inform: "\uC790\uB3D9\uCC28 \uAE30\uC5B4\uB97C \uC81C\uC5B4\uD558\uB294\uB370
+      \uC0AC\uC6A9"
