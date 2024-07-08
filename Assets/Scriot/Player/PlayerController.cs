@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics.Raycast(startTf.position, startTf.forward, out hitInfo, Mathf.Infinity))
         {
-            if ((hitInfo.collider.tag == "UI"|| hitInfo.collider.tag == "GripItem"|| hitInfo.collider.tag == "ItemBox") &&isTeleport == false)
+            if ((hitInfo.collider.tag == "UI") &&isTeleport == false)
             {
                rightRayController.SetActive(true);
             }

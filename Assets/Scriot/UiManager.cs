@@ -24,7 +24,7 @@ public class UiManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+      
     }
     //실시간 수치 적용
     public void PlayerInformTextChange()
@@ -35,15 +35,15 @@ public class UiManager : MonoBehaviour
     }
 
     //FadeIn기능
-    private void PlayerFadeIn()
+    public void PlayerFadeIn()
     {
         //fadeInImg.gameObject.SetActive(true);
         StartCoroutine(CorutineFadeInOut(1));
     }
     //FadeOut기능
-    private void PlayFadeOut()
+    public void PlayerFadeOut()
     {
-        fadeInImg.gameObject.SetActive(false);
+        //fadeInImg.gameObject.SetActive(false);
         StartCoroutine(CorutineFadeInOut(0));
     }
     //FadeOut은 0 FadeIn이면 1이상
@@ -70,20 +70,23 @@ public class UiManager : MonoBehaviour
     //FadeOut은 0 FadeIn이면 1이상
     private IEnumerator CorutineFadeInOut(int num)
     {
-        float fadeTime = 0;
-        int cout = 1;
-        float roopTime = 0.01f;
-        float removeSpeed = cout * roopTime;
-        Color tempColor = fadeInImg.color;
-        tempColor.a = num;
-        while (fadeTime <= cout)
+        for (int i = 0; i < 2; i++)
         {
-            //255에서 작아짐
-            fadeTime += roopTime;
-            float removeSpeedABS = (num >= 1) ? removeSpeed : -removeSpeed;
-            tempColor.a -= removeSpeedABS;
-            fadeInImg.color = tempColor;
-            yield return new WaitForSeconds(roopTime);
+            float fadeTime = 0;
+            int cout = 1;
+            float roopTime = 0.01f;
+            float removeSpeed = cout * roopTime;
+            Color tempColor = fadeInImg.color;
+            tempColor.a = num;
+            while (fadeTime <= cout)
+            {
+                //255에서 작아짐
+                fadeTime += roopTime;
+                float removeSpeedABS = (num >= 1) ? removeSpeed : -removeSpeed;
+                tempColor.a -= removeSpeedABS;
+                fadeInImg.color = tempColor;
+                yield return new WaitForSeconds(roopTime);
+            }
         }
     }
 }

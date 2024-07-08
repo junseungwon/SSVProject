@@ -1,9 +1,11 @@
 using System.Data.Common;
+using TMPro;
 using UnityEngine;
 
 public class ItemBoxColider : MonoBehaviour
 {
-
+    [SerializeField]
+    private TextMeshProUGUI m_TextMeshPro;
     /// <summary>
     /// 플레이어 손이 itembox에 닿고 플레이어의 손이 잡기 상태가 아닌경우(grab버튼을 누르지 않은 상태)
     ///-> 물건이 안에 넣어짐
@@ -36,6 +38,7 @@ public class ItemBoxColider : MonoBehaviour
                 {
                     playerGrabObj.GetComponent<ItemGrabInteractive>().itemBoxParentNum = parentIndex;
                     playerGrabObj.GetComponent<Rigidbody>().isKinematic = true;
+                    m_TextMeshPro.text =GameManager.Instance.ItemBox.itemBoxs[parentIndex].itemCount.ToString();
                 }
                 
             }
