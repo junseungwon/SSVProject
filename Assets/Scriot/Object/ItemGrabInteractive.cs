@@ -1,11 +1,13 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class ItemGrabInteractive : GrabInteractive_JSW
 {
     public int itemBoxParentNum = -1;
-    public Vector3 objScale;
+    public Vector3 objScale = Vector3.zero;
+    public TextMeshProUGUI textUI = null;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,9 +24,10 @@ public class ItemGrabInteractive : GrabInteractive_JSW
     {
         if (itemBoxParentNum > -1)
         {
-            transform.parent = null;
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().useGravity = true;
+            textUI.text = GameManager.Instance.ItemBox.itemBoxs[itemBoxParentNum].itemCount.ToString();
+            transform.parent = null;
             Debug.Log(objScale+"객체 스케일 입니다.");
             transform.localScale = objScale;
             itemBoxParentNum = -1;

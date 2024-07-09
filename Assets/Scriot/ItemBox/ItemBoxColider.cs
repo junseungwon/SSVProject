@@ -37,6 +37,7 @@ public class ItemBoxColider : MonoBehaviour
                 if (isBool)
                 {
                     playerGrabObj.GetComponent<ItemGrabInteractive>().itemBoxParentNum = parentIndex;
+                    playerGrabObj.GetComponent<ItemGrabInteractive>().textUI = m_TextMeshPro;
                     playerGrabObj.GetComponent<Rigidbody>().isKinematic = true;
                     m_TextMeshPro.text =GameManager.Instance.ItemBox.itemBoxs[parentIndex].itemCount.ToString();
                 }

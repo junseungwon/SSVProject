@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.XR.Interaction;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
+using UnityEngine.XR.Interaction.Toolkit;
 public class PlayerController : MonoBehaviour
 {
     public InputActionAsset inputActions;
@@ -25,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public Text st2;
     public Text st3;
 
+
     private bool isTeleport = false;
     private void Awake()
     {
@@ -39,24 +38,44 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
-       st3.text = "select " + inputActions.actionMaps[5].actions[0].ReadValue <float>().ToString();
+
+        st3.text = "select " + inputActions.actionMaps[5].actions[0].ReadValue<float>().ToString();
         ActivateTeleport();
-        RayCheckUi();
+        UIRayControllerActive();
     }
     //uiray활성화
     private void RayCheckUi()
     {
         if (Physics.Raycast(startTf.position, startTf.forward, out hitInfo, Mathf.Infinity))
         {
-            if ((hitInfo.collider.tag == "UI") &&isTeleport == false)
+            if ((hitInfo.collider.tag == "UI") && isTeleport == false)
             {
-               rightRayController.SetActive(true);
+                rightRayController.SetActive(true);
             }
         }
         else
         {
             rightRayController.SetActive(false);
+        }
+    }
+    //2 5중에 0
+    //UIRayController활성화
+    private void UIRayControllerActive()
+    {
+        UIRayControllerActive(2, leftRayController);
+        UIRayControllerActive(5, rightRayController);
+    }
+    private void UIRayControllerActive(int num, GameObject obj)
+    {
+        float selectBt = inputActions.actionMaps[num].actions[2].ReadValue<float>();
+        if (selectBt == 1)
+        {
+            obj.SetActive(true);
+           // inputActions.actionMaps[5].actions[0].AddBinding
+        }
+        else
+        {
+            obj.SetActive(false);
         }
     }
 
@@ -70,6 +89,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if(isTeleport == true)
+            {
+                transform.position = teleportRayController.GetComponent<XRInteractorLineVisual>().reticle.transform.position;
+                isTeleport = false;
+            }
             teleportRayController.SetActive(false);
             isTeleport = false;
         }

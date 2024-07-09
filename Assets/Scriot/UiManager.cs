@@ -37,13 +37,13 @@ public class UiManager : MonoBehaviour
     //FadeIn기능
     public void PlayerFadeIn()
     {
-        //fadeInImg.gameObject.SetActive(true);
+        fadeInImg.gameObject.SetActive(true);
         StartCoroutine(CorutineFadeInOut(1));
     }
     //FadeOut기능
     public void PlayerFadeOut()
     {
-        //fadeInImg.gameObject.SetActive(false);
+        fadeInImg.gameObject.SetActive(true);
         StartCoroutine(CorutineFadeInOut(0));
     }
     //FadeOut은 0 FadeIn이면 1이상
@@ -88,5 +88,6 @@ public class UiManager : MonoBehaviour
                 yield return new WaitForSeconds(roopTime);
             }
         }
+        fadeInImg.gameObject.SetActive(false);
     }
 }
