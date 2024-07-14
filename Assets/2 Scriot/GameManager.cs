@@ -20,4 +20,5 @@ public class GameManager : MonoBehaviour
     public PlayerData PlayerData { get; set; }
 
     public UiManager UiManager { get; set; }
+
 }
