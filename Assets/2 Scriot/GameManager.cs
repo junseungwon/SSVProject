@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public PlayerController PlayerController { get; set; }
     public PlayerData PlayerData { get; set; }
 
+    public MakeItemBox MakeItemBox { get; set; }
     public UiManager UiManager { get; set; }
 
 }

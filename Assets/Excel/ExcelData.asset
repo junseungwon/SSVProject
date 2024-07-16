@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f4255c0a30e3345a64bb4004e47452, type: 3}
+  m_Script: {fileID: 11500000, guid: ed70ce5da0bafb149a26d449cb30c707, type: 3}
   m_Name: ExcelData
   m_EditorClassIdentifier: 
-  Sheet1:
+  ItemDB:
   - CodeName: 100
     Name: "\uC790\uB3D9\uCC28 \uC131\uB2A5 \uAE30\uB85D\uBD80"
     Inform: "\uCC28\uB7C9 \uC5F0\uC2DD\uC774\uB098 \uC8FC\uD589\uAC70\uB9AC\uC640
@@ -46,3 +46,11 @@ MonoBehaviour:
     Name: "\uC790\uB3D9\uCC28 \uAE30\uC5B4\uBD09"
     Inform: "\uC790\uB3D9\uCC28 \uAE30\uC5B4\uB97C \uC81C\uC5B4\uD558\uB294\uB370
       \uC0AC\uC6A9"
+  ItemComebine:
+  - Item1: 100
+    Count1: 1
+    Item2: 100
+    Count2: 1
+    Item3: 0
+    Count3: 0
+    CompletedItem: 200
