@@ -109,15 +109,3 @@ public class ItemBoxData
         this.itemCount = itemCount;
     }
 }
-public class ItemData
-{
-    public string name = "";
-    public string inform = "";
-    public GameObject obj;
-    public ItemData(string name, string inform, GameObject obj)
-    {
-        this.name = name;
-        this.inform = inform;
-        this.obj = obj;
-    }
-}

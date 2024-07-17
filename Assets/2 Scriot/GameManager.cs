@@ -22,4 +22,6 @@ public class GameManager : MonoBehaviour
     public MakeItemBox MakeItemBox { get; set; }
     public UiManager UiManager { get; set; }
 
+    public ItemTable itemTable { get; set; }
+
 }

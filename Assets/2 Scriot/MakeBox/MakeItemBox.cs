@@ -1,47 +1,51 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MakeItemBox : MonoBehaviour
 {
-
-    public GameObject completeItemPrefab = null;
-    public ExcelData excelData;
-
+    [Header("아이템 Element")]
     [SerializeField]
     private GameObject[] itemsParent = new GameObject[3];
-
-    [SerializeField]
-    private GameObject completeItemParent = null;
     private GameObject[] items = new GameObject[3];
-    
     private int[] itemCount = new int[3];
     
+    
+    [Header("아이템 Complete")]
+    [SerializeField]
+    private GameObject completeItemParent = null;
     private GameObject completeItem = null;
     private int completeItemCode = 0;
+   
     private void Start()
     {
         GameManager.Instance.MakeItemBox = this;
-        //ProduceCompleteItem();
     }
+
+    //+아이템을 제거했을 때도 코드 작성 필요함
     public bool PutItem(GameObject item, int num)
     {
         //기존 아이템이 없으면 아이템을 넣고
         //아이템이 있으면 횟수만 올라감
         //아이템을 다른것을 넣는다면 넣을 수 없게 만들고 
-        Debug.Log(num);
         if (itemCount[num] == 0)
         {
             items[num] = item;
             itemCount[num] += 1;
+
+            TextNumUIChange(num);
+
             //아이템을 저장하자
             ItemSetting(item, itemsParent[num]);
             Debug.Log(items[num].name + "를 아이템 생성기계에 넣었습니다.");
-        } else if (items[num].name == item.name)
+        }
+        else if (items[num].name == item.name)
         {
             itemCount[num] += 1;
+            TextNumUIChange(num);
             Destroy(item);
-            Debug.Log(items[num].name + " " + itemCount[num] +"개를 아이템 생성기계에 넣었습니다.");
+            Debug.Log(items[num].name + " " + itemCount[num] + "개를 아이템 생성기계에 넣었습니다.");
         }
         else
         {
@@ -51,7 +55,6 @@ public class MakeItemBox : MonoBehaviour
         ProduceCompleteItem();
         return true;
     }
-
     public GameObject GetOutItem()
     {
         return completeItem;
@@ -64,38 +67,40 @@ public class MakeItemBox : MonoBehaviour
         {
             Destroy(completeItem);
         }
-        //GetCompleteItem();
-        completeItem = Instantiate(completeItemPrefab);
+        completeItem = GetCompleteItem();
         if (completeItem != null)
         {
             ItemSetting(completeItem, completeItemParent);
         }
-
     }
-    
-    private void ItemSetting(GameObject item,GameObject parentObj)
+
+    private void ItemSetting(GameObject item, GameObject parentObj)
     {
         item.transform.parent = parentObj.transform;
         item.transform.position = parentObj.transform.GetChild(1).position;
         item.transform.rotation = Quaternion.identity;
-        item.transform.localScale = new Vector3(50,50,50);
+        item.transform.localScale = new Vector3(50, 50, 50);
     }
-    private void GetCompleteItem()
+
+    //완성형 아이템을 코드를 반환함
+    private GameObject GetCompleteItem()
     {
         //아이템 이름들이 코드이고 코드들을 받아와서 
         //맨첫번째꺼 부터 이름이랑 개수가 같은지 확인한다.
         //같으면 다시 반복해서 두번째 아이템이 이름이랑 개수가 같은지 확인한다.
-        // 마지막으로 세번째 아이템까지 이름이랑 개수가 같을 경우 완성아이템의 complete아이템 코드값을 리턴한다.
+        // 마지막으로 세번째 아이템까지 이름이랑 개수가 같을 경우 완성아이템의 complete아이템 코드값을 받아와서 해당되는 아이템을 생성하고 반환함
         int cnt = 0;
         List<int> listItemNum = new List<int>();
         //itemCnt에다가 0부터 count개수만큼 넣어준다.
-        for (int i = 0; i < excelData.ItemComebine.Count; i++)
+        for (int i = 0; i < GameManager.Instance.itemTable.excelDB.ItemComebine.Count; i++)
         {
             listItemNum.Add(i);
         }
-        CheckItems(listItemNum, cnt);
+        GameObject item = Instantiate(GameManager.Instance.itemTable.GetDBGameObject(CheckItems(listItemNum, cnt)));
+        return item;
     }
-    private void CheckItems(List<int> listItemNum, int cnt)
+
+    private int CheckItems(List<int> listItemNum, int cnt)
     {
         //총 아이템 조합수가 6개가 있다고 했을 때
         //itemCnt에는 0부터 5까지의 수가 들어있음
@@ -112,13 +117,15 @@ public class MakeItemBox : MonoBehaviour
         if (cnt == 2)
         {
             completeItemCode = storeInt[0];
-            return;
+            return completeItemCode;
         }
         else
         {
             cnt++;
             CheckItems(storeInt, cnt);
         }
+        Debug.LogError("아이템을 확인할 수 없습니다.");
+        return 0;
 
     }
     //아이템이 서로 같은지 확인
@@ -130,16 +137,16 @@ public class MakeItemBox : MonoBehaviour
         switch (cnt)
         {
             case 0:
-                itemCode = excelData.ItemComebine[listItemNum[num]].Item1;
-                itemCnt = excelData.ItemComebine[listItemNum[num]].Count1;
+                itemCode = GameManager.Instance.itemTable.excelDB.ItemComebine[listItemNum[num]].Item1;
+                itemCnt = GameManager.Instance.itemTable.excelDB.ItemComebine[listItemNum[num]].Count1;
                 break;
             case 1:
-                itemCode = excelData.ItemComebine[listItemNum[num]].Item2;
-                itemCnt = excelData.ItemComebine[listItemNum[num]].Count2;
+                itemCode = GameManager.Instance.itemTable.excelDB.ItemComebine[listItemNum[num]].Item2;
+                itemCnt = GameManager.Instance.itemTable.excelDB.ItemComebine[listItemNum[num]].Count2;
                 break;
             case 2:
-                itemCode = excelData.ItemComebine[listItemNum[num]].Item3;
-                itemCnt = excelData.ItemComebine[listItemNum[num]].Count3;
+                itemCode = GameManager.Instance.itemTable.excelDB.ItemComebine[listItemNum[num]].Item3;
+                itemCnt = GameManager.Instance.itemTable.excelDB.ItemComebine[listItemNum[num]].Count3;
                 break;
         }
 
@@ -172,5 +179,9 @@ public class MakeItemBox : MonoBehaviour
         }
         Array.Clear(items, 0, items.Length);
         Array.Clear(itemCount, 0, itemCount.Length);
+    }
+    private void TextNumUIChange(int num)
+    {
+        itemsParent[num].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = itemCount[num].ToString();
     }
 }
