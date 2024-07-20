@@ -63,7 +63,7 @@ MonoBehaviour:
     Item3: 0
     Name3: 
     Count3: 0
-    CompletedItem: 100
+    CompletedItem: 110
     CompletedItemName: 
     CompletedCount: 2
   - Item1: 120
@@ -80,14 +80,14 @@ MonoBehaviour:
     CompletedCount: 5
   - Item1: 110
     Name1: "\uB098\uBB34 \uB9C9\uB300\uAE30"
-    Count1: 3
+    Count1: 2
     Item2: 130
     Name2: "\uB098\uBB47\uC78E"
-    Count2: 3
+    Count2: 2
     Item3: 140
     Name3: "\uB178\uB048"
-    Count3: 3
-    CompletedItem: 200
+    Count3: 2
+    CompletedItem: 190
     CompletedItemName: 
     CompletedCount: 1
   - Item1: 140
@@ -99,7 +99,7 @@ MonoBehaviour:
     Item3: 0
     Name3: 
     Count3: 0
-    CompletedItem: 190
+    CompletedItem: 180
     CompletedItemName: 
     CompletedCount: 1
   - Item1: 170
@@ -123,6 +123,6 @@ MonoBehaviour:
     Item3: 0
     Name3: 
     Count3: 0
-    CompletedItem: 180
+    CompletedItem: 160
     CompletedItemName: 
     CompletedCount: 1

@@ -7,17 +7,17 @@ public class MakeItemBox : MonoBehaviour
 {
     [Header("아이템 Element")]
     [SerializeField]
-    private GameObject[] itemsParent = new GameObject[3];
-    private GameObject[] items = new GameObject[3];
-    private int[] itemCount = new int[3];
-    
-    
+    public GameObject[] itemsParent = new GameObject[3];
+    public GameObject[] items = new GameObject[3];
+    public int[] itemCount = new int[3];
+
+
     [Header("아이템 Complete")]
     [SerializeField]
     private GameObject completeItemParent = null;
     private GameObject completeItem = null;
     private int completeItemCode = 0;
-   
+
     private void Start()
     {
         GameManager.Instance.MakeItemBox = this;
@@ -55,9 +55,36 @@ public class MakeItemBox : MonoBehaviour
         ProduceCompleteItem();
         return true;
     }
-    public GameObject GetOutItem()
+    public void GetOut(int num, GameObject obj, Vector3 scale)
     {
-        return completeItem;
+        //해당되는 부분에 아이템이 존재하는 경우
+        if (itemCount[num] >= 2)
+        {
+            itemCount[num] -= 1;
+            GameObject newObj = Instantiate(obj);
+            newObj.name = obj.name;
+            newObj.GetComponent<ItemGrabInteractive>().objScale = scale;
+            ItemSetting(newObj, itemsParent[num]);
+            TextNumUIChange(num);
+            Debug.Log("아이템을 1개 가져가셨습니다.");
+            Debug.Log("아이템이 추가되서 현재 아이템의 코드는 " + obj.name + " 아이템 수량은 " + itemCount[num]);
+
+        }
+        else if (itemCount[num] == 1)
+        {
+            itemCount[num] = 0;
+            items[num] = null;
+            TextNumUIChange(num);
+            Debug.Log("아이템을 모두 가지가셧습니다. 아이템박스를 초기화하겠습니다.");
+
+        }
+        //해당되는 부분에 아이템이 존재하지 않는 경우
+        else
+        {
+            Debug.Log("아무것도 없습니다.");
+            return;
+        }
+        ProduceCompleteItem();
     }
     private void ProduceCompleteItem()
     {
@@ -96,8 +123,21 @@ public class MakeItemBox : MonoBehaviour
         {
             listItemNum.Add(i);
         }
-        GameObject item = Instantiate(GameManager.Instance.itemTable.GetDBGameObject(CheckItems(listItemNum, cnt)));
-        return item;
+
+        int itemNumber = CheckItems(listItemNum, cnt);
+
+        if (itemNumber != 0)
+        {
+            GameObject item = Instantiate(GameManager.Instance.itemTable.GetDBGameObject(GameManager.Instance.itemTable.excelDB.ItemComebine[itemNumber].CompletedItem));
+            
+            //CompleteItem의 textui개수를 바꿈
+            completeItemParent.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = GameManager.Instance.itemTable.excelDB.ItemComebine[itemNumber].CompletedCount.ToString();
+            return item;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     private int CheckItems(List<int> listItemNum, int cnt)
@@ -116,17 +156,21 @@ public class MakeItemBox : MonoBehaviour
         }
         if (cnt == 2)
         {
-            completeItemCode = storeInt[0];
-            return completeItemCode;
+            if (storeInt.Count > 0)
+            {
+                completeItemCode = storeInt[0];
+            }
+            else
+            {
+                completeItemCode = 0;
+            }
         }
         else
         {
             cnt++;
             CheckItems(storeInt, cnt);
         }
-        Debug.LogError("아이템을 확인할 수 없습니다.");
-        return 0;
-
+        return completeItemCode;
     }
     //아이템이 서로 같은지 확인
     private bool IsThisSameThing(int cnt, int num, List<int> listItemNum)
@@ -171,16 +215,21 @@ public class MakeItemBox : MonoBehaviour
         }
     }
     //기존 데이터 제거
-    private void RemoveItems()
+    public void RemoveItems()
     {
-        for (int i = 0; i < items.Length; i++)
-        {
-            Destroy(items[i]);
-        }
         Array.Clear(items, 0, items.Length);
         Array.Clear(itemCount, 0, itemCount.Length);
+        completeItem = null;
+        completeItemCode = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            Destroy(items[i]);
+            TextNumUIChange(i);
+        }
+        completeItemParent.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = completeItemCode.ToString();
+
     }
-    private void TextNumUIChange(int num)
+    public void TextNumUIChange(int num)
     {
         itemsParent[num].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = itemCount[num].ToString();
     }

@@ -43,6 +43,10 @@ public class ItemGrabInteractive : GrabInteractive_JSW
         {
             GameManager.Instance.ItemBox.GetOut(itemBoxParentNum, this.gameObject, objScale);
         }
+        if(makeBoxParentNum > -1)
+        {
+            GameManager.Instance.MakeItemBox.GetOut(makeBoxParentNum, this.gameObject, objScale);
+        }
     }
     private void GrabOutItemBox(SelectExitEventArgs arg0)
     {
@@ -55,5 +59,14 @@ public class ItemGrabInteractive : GrabInteractive_JSW
             transform.localScale = objScale;
             itemBoxParentNum = -1;
         }
+        if(makeBoxParentNum > -1)
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<Rigidbody>().useGravity = true;
+            transform.parent = null;
+            transform.localScale = objScale;
+            makeBoxParentNum = -1;
+        }
     }
+    //만약 제작대에서 완성형 아이템을 가지고 나갔으면 MAKEITEM의 저장되었던 정보들을 지운다.
 }
