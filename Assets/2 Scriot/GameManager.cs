@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+        DontDestroyOnLoad(this);
     }
+    
     public GameObject player;
     public ItemTable ItemTable { get; set; }
     public ItemBox ItemBox { get; set; }
@@ -24,4 +26,7 @@ public class GameManager : MonoBehaviour
 
     public ItemTable itemTable { get; set; }
 
+    public PlayStoryManager PlayStoryManager { get; set; }
+
+    public PlanNote PlanNote { get; set; }
 }

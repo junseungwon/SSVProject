@@ -21,7 +21,6 @@ public class UiManager : MonoBehaviour
     void Start()
     {
         GameManager.Instance.UiManager = this;
-        PlayerFadeIn();
     }
 
     // Update is called once per frame

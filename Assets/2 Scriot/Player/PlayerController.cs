@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        st3.text = "select " + inputActions.actionMaps[5].actions[0].ReadValue<float>().ToString();
+       // st3.text = "select " + inputActions.actionMaps[5].actions[0].ReadValue<float>().ToString();
         ActivateTeleport();
         UIRayControllerActive();
     }
