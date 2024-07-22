@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     }
     
     public GameObject player;
-    public ItemTable ItemTable { get; set; }
     public ItemBox ItemBox { get; set; }
     public PlayerController PlayerController { get; set; }
     public PlayerData PlayerData { get; set; }

@@ -4,10 +4,13 @@ using UnityEngine;
 public class ItemBox : MonoBehaviour
 {
     public ItemBoxData[] itemBoxs = new ItemBoxData[9];
-
-    void Start()
+    private void Awake()
     {
         GameManager.Instance.ItemBox = this;
+        
+    }
+    void Start()
+    {
         ItemBoxSetting();
     }
     //아이템 박스 세팅

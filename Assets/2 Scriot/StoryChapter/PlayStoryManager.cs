@@ -11,12 +11,17 @@ public class PlayStoryManager : MonoBehaviour
     //chapter안에 스토리 단계
     public int storyStep = 0;
 
-    [SerializeField]
-    private GameObject[] chapterManager;
+    public int sceneNumber = 0;
+
+    public GameObject[] chapterManager;
+    private void Awake()
+    {
+        GameManager.Instance.PlayStoryManager = this;
+    }
 
     private void Start()
     {
-        GameManager.Instance.PlayStoryManager = this;
+        //GameManager.Instance.PlayStoryManager = this;
         PlayThisChapter();
     }
     public void PlayNextChapter()
@@ -34,11 +39,15 @@ public class PlayStoryManager : MonoBehaviour
     public void MoveNextMainScene()
     {
         SceneManager.LoadScene(1);
+        GameManager.Instance.UiManager.PlayerFadeInOut(1, 2);
+        sceneNumber = 1;
+
     }
     public void MoveNextStartScene()
     {
         chapterStep = 0;
         storyStep = 0;
+        sceneNumber = 0;
         SceneManager.LoadScene(0);
     }   
 }

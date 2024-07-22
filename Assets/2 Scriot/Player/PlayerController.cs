@@ -27,10 +27,11 @@ public class PlayerController : MonoBehaviour
     private bool isTeleport = false;
     private void Awake()
     {
+        GameManager.Instance.PlayerController = this;
+        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
-        GameManager.Instance.PlayerController = this;
 
     }
 

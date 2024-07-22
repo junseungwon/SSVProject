@@ -21,7 +21,7 @@ public class PlayerData : MonoBehaviour
         set { thirsty = value; GameManager.Instance.UiManager.PlayerInformImageValueChange((int)PlayerDataState.Thirsty, Thirsty); }
     }
 
-    private void Start()
+    private void Awake()
     {
         GameManager.Instance.PlayerData = this;
         GameManager.Instance.player = this.gameObject;

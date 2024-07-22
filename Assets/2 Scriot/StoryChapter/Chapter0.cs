@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Chapter0 : MoveGuide, ChapterManager
@@ -8,6 +8,7 @@ public class Chapter0 : MoveGuide, ChapterManager
     public void ThisChapterPlay()
     {
         HowToPlay();
+        //GameManager.Instance.UiManager.PlayerFadeInOut(0, 3);
     }
 
     //사용자에게 사용법을 알려준다.
@@ -16,15 +17,20 @@ public class Chapter0 : MoveGuide, ChapterManager
         Debug.Log("사용자에게 현재 단계를 설명해줌");
     }
     //튜브를 소켓(특정 장소)에 물건을 배치하면 발동함
-    private void IFPutTube()
+    public void IFPutTube()
     {
-        //FadeOut이 실행된다.
-        GameManager.Instance.UiManager.PlayerFadeIn();
-        //다음 메인 씬으로 이동한다.
-        GameManager.Instance.PlayStoryManager.MoveNextMainScene();
-        GuideNextMovingArea(0);
+        //FadeOut이 실행되고 다음 메인씬으로 넘어간다.
+        GameManager.Instance.UiManager.PlayerFadeInOut(0, 3, GameManager.Instance.PlayStoryManager.MoveNextMainScene);
+        StartCoroutine(CorutineIsNextScene());
     }
-
+    private IEnumerator CorutineIsNextScene()
+    {
+        while (GameManager.Instance.PlayStoryManager.sceneNumber != 1)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        CalculateNearPlayerPos(0);
+    }
     protected override void NearPlayer()
     {
         BallNearPlayer();

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MoveGuide : MonoBehaviour
 {
-    [SerializeField]
-    private Transform[] movePos;
+    public Transform[] movePos;
 
     [SerializeField]
     private GameObject teleportGuidePrefab;

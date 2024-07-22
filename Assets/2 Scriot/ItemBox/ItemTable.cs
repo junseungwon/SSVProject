@@ -12,10 +12,13 @@ public class ItemTable : MonoBehaviour
     [SerializeField]
     private GameObject[] itemObj = new GameObject[10];
 
-
-    private void Start()
+    private void Awake()
     {
         GameManager.Instance.itemTable = this;
+        
+    }
+    private void Start()
+    {
         CombineExcelDB();
     }
     //엑셀 데이터를 받아와서 itemTable로 변경

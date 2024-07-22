@@ -17,10 +17,13 @@ public class MakeItemBox : MonoBehaviour
     private GameObject completeItemParent = null;
     private GameObject completeItem = null;
     private int completeItemCode = 0;
-
-    private void Start()
+    private void Awake()
     {
         GameManager.Instance.MakeItemBox = this;
+        
+    }
+    private void Start()
+    {
     }
 
     //+아이템을 제거했을 때도 코드 작성 필요함

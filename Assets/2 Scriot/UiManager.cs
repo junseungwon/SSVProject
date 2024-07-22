@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -13,14 +14,14 @@ public class UiManager : MonoBehaviour
     private Image[] playerInfromImage;
     [SerializeField]
     private Image fadeInImg = null;
-    [SerializeField]
-    private TextMeshProUGUI tutorialText = null;
-    [SerializeField]
-    private RectTransform fadeInOutImg = null;
+    private void Awake()
+    {
+        GameManager.Instance.UiManager = this;
+
+    }
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.UiManager = this;
     }
 
     // Update is called once per frame
@@ -42,66 +43,61 @@ public class UiManager : MonoBehaviour
         playerInfromImage[num].fillAmount = dataValue * 0.001f;
     }
 
-    public void ChangeTutorialText(string text)
-    {
-        tutorialText.gameObject.SetActive(true);
-        tutorialText.text = text;
-    }
     //FadeIn기능
-    public void PlayerFadeIn()
+    public void PlayerFadeInOut(int startNum, int lastNum,Action action = null)
     {
-        fadeInImg.gameObject.SetActive(true);
-        StartCoroutine(CorutineFadeInOut());
+        StartCoroutine(CorutineFadeInOut(startNum,lastNum, action));
+
     }
 
-    //FadeOut은 0 FadeIn이면 1이상
-    //private IEnumerator CorutineFadeInOut(int num)
-    //{
-    //    int cout = 1500;
-    //    float roopTime = 0.01f;
-    //    float removeSpeed = cout * roopTime;
-    //    float fadeoutNum= fadeInOutImg.sizeDelta.x;
-
-    //    //2000을 0.01초 동안 반복해서 cout초 안에 끝내게 하려면 
-    //    while (fadeInOutImg.sizeDelta.x <= cout)
-    //    {
-    //        float removeSpeedABS = (num >= 1) ? removeSpeed : -removeSpeed;
-    //        ///2000, 20000까지 커짐
-    //        fadeoutNum+= removeSpeedABS;
-    //        Vector2 newSize = new Vector2(fadeoutNum, fadeoutNum);
-    //        fadeInOutImg.sizeDelta = newSize;
-
-    //        yield return new WaitForSeconds(roopTime);
-    //    }
-    //    fadeInOutImg.gameObject.SetActive(false );
-    //}
-    //FadeOut은 0 FadeIn이면 1이상
-    private IEnumerator CorutineFadeInOut()
+    private IEnumerator CorutineFadeInOut(int startNum,int lastNum, Action action = null)
     {
-        for (int j = 0; j < 2; j++)
+        //number가 3이라면 0 1 2가 반복해서 들어오고
+        //0 1 2 반복
+        for (int i = startNum; i < lastNum; i++)
         {
-
-            for (int i = 0; i < 2; i++)
+            float fadeTime = 0;
+            int cout = 1;
+            float roopTime = 0.1f;
+            float removeSpeed = cout * roopTime;
+            Color tempColor = fadeInImg.color;
+            tempColor.a = (i % 2 != 0) ? 1 : 0;
+            while (fadeTime <= cout)
             {
-                int number = i;
-                float fadeTime = 0;
-                int cout = 1;
-                float roopTime = 0.1f;
-                float removeSpeed = cout * roopTime;
-                Color tempColor = fadeInImg.color;
-                tempColor.a = number;
-                while (fadeTime <= cout)
-                {
-                    //255에서 작아짐
-                    fadeTime += roopTime;
-                    float removeSpeedABS = (number >= 1) ? removeSpeed : -removeSpeed;
-                    tempColor.a -= removeSpeedABS;
-                    fadeInImg.color = tempColor;
-                    yield return new WaitForSeconds(roopTime);
-                }
-
+                //255에서 작아짐
+                fadeTime += roopTime;
+                float removeSpeedABS = (i % 2 != 0) ? removeSpeed : -removeSpeed;
+                tempColor.a -= removeSpeedABS;
+                fadeInImg.color = tempColor;
+                yield return new WaitForSeconds(roopTime);
             }
         }
-                fadeInImg.gameObject.SetActive(false);
+            if (action != null)
+            {
+                action.Invoke();
+            }
     }
 }
+
+//FadeOut은 0 FadeIn이면 1이상
+//private IEnumerator CorutineFadeInOut(int num)
+//{
+//    int cout = 1500;
+//    float roopTime = 0.01f;
+//    float removeSpeed = cout * roopTime;
+//    float fadeoutNum= fadeInOutImg.sizeDelta.x;
+
+//    //2000을 0.01초 동안 반복해서 cout초 안에 끝내게 하려면 
+//    while (fadeInOutImg.sizeDelta.x <= cout)
+//    {
+//        float removeSpeedABS = (num >= 1) ? removeSpeed : -removeSpeed;
+//        ///2000, 20000까지 커짐
+//        fadeoutNum+= removeSpeedABS;
+//        Vector2 newSize = new Vector2(fadeoutNum, fadeoutNum);
+//        fadeInOutImg.sizeDelta = newSize;
+
+//        yield return new WaitForSeconds(roopTime);
+//    }
+//    fadeInOutImg.gameObject.SetActive(false );
+//}
+//FadeOut은 0 FadeIn이면 1이상

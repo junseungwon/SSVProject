@@ -19,10 +19,13 @@ public class PlanNote : MonoBehaviour
 
     [SerializeField]
     private GameObject planTextUi = null;
+    private void Awake()
+    {
+        GameManager.Instance.PlanNote = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.PlanNote = this;
         ResetTextSetting();
         StartCoroutine(corutineTime());
     }
