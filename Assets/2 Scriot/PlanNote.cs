@@ -21,7 +21,13 @@ public class PlanNote : MonoBehaviour
     private GameObject planTextUi = null;
     private void Awake()
     {
+        Debug.Log(1);
         GameManager.Instance.PlanNote = this;
+        gameObject.SetActive(false);
+    }
+    private void OnEnable()
+    {
+        Debug.Log(2);
     }
     // Start is called before the first frame update
     void Start()

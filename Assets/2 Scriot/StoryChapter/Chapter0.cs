@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Chapter0 : MoveGuide, ChapterManager
 {
@@ -8,7 +9,7 @@ public class Chapter0 : MoveGuide, ChapterManager
     public void ThisChapterPlay()
     {
         HowToPlay();
-        //GameManager.Instance.UiManager.PlayerFadeInOut(0, 3);
+        IFPutTube();
     }
 
     //사용자에게 사용법을 알려준다.
@@ -25,11 +26,13 @@ public class Chapter0 : MoveGuide, ChapterManager
     }
     private IEnumerator CorutineIsNextScene()
     {
-        while (GameManager.Instance.PlayStoryManager.sceneNumber != 1)
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        while (currentSceneIndex == 0)
         {
+            currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             yield return new WaitForSeconds(0.1f);
         }
-        CalculateNearPlayerPos(0);
+        StartCoroutine(CalculateNearPlayerPos(0));
     }
     protected override void NearPlayer()
     {

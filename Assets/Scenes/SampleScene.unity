@@ -6072,6 +6072,7 @@ MonoBehaviour:
   hand_Transfrom: []
   infromUi: {fileID: 0}
   textObject: []
+  objHeight: 0.03
 --- !u!54 &254972092
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7599,6 +7600,7 @@ MonoBehaviour:
   infromUi: {fileID: 0}
   textObject: []
   itemBoxParentNum: -1
+  makeBoxParentNum: -1
   objScale: {x: 0, y: 0, z: 0}
   textUI: {fileID: 0}
 --- !u!54 &382349927
@@ -10734,6 +10736,7 @@ MonoBehaviour:
   infromUi: {fileID: 0}
   textObject: []
   itemBoxParentNum: -1
+  makeBoxParentNum: -1
   objScale: {x: 0, y: 0, z: 0}
   textUI: {fileID: 0}
 --- !u!54 &505788761
@@ -27309,8 +27312,6 @@ MonoBehaviour:
   - {fileID: 0}
   playerInfromImage: []
   fadeInImg: {fileID: 1188767014}
-  tutorialText: {fileID: 0}
-  fadeInOutImg: {fileID: 1178992388}
 --- !u!1 &1451002449
 GameObject:
   m_ObjectHideFlags: 0
@@ -29765,6 +29766,7 @@ MonoBehaviour:
   infromUi: {fileID: 0}
   textObject: []
   itemBoxParentNum: -1
+  makeBoxParentNum: -1
   objScale: {x: 0, y: 0, z: 0}
   textUI: {fileID: 0}
 --- !u!54 &1549509164
@@ -34927,7 +34929,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5ce3152b6dd034a8715867539b016c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjects:
+  excelDB: {fileID: 11400000, guid: 73263dcfc09208e42be72fb5b82e4d55, type: 2}
+  itemObj:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -35759,6 +35769,7 @@ MonoBehaviour:
   infromUi: {fileID: 0}
   textObject: []
   itemBoxParentNum: -1
+  makeBoxParentNum: -1
   objScale: {x: 0, y: 0, z: 0}
   textUI: {fileID: 0}
 --- !u!1 &1879054739

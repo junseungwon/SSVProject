@@ -34,7 +34,7 @@ public class SendMovePosDB : MonoBehaviour
         
     }
 
-    private void SendMovePosData()
+    public void SendMovePosData()
     {
         for (int i = 0; i < GameManager.Instance.PlayStoryManager.chapterManager.Length; i++)
         {

@@ -12,8 +12,10 @@ public class UiManager : MonoBehaviour
 
     [SerializeField]
     private Image[] playerInfromImage;
-    [SerializeField]
-    private Image fadeInImg = null;
+
+    public Image fadeInImg;
+
+
     private void Awake()
     {
         GameManager.Instance.UiManager = this;
@@ -22,6 +24,7 @@ public class UiManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -44,13 +47,13 @@ public class UiManager : MonoBehaviour
     }
 
     //FadeIn기능
-    public void PlayerFadeInOut(int startNum, int lastNum,Action action = null)
+    public void PlayerFadeInOut(int startNum, int lastNum, Action action = null)
     {
-        StartCoroutine(CorutineFadeInOut(startNum,lastNum, action));
+        StartCoroutine(CorutineFadeInOut(startNum, lastNum, action));
 
     }
 
-    private IEnumerator CorutineFadeInOut(int startNum,int lastNum, Action action = null)
+    private IEnumerator CorutineFadeInOut(int startNum, int lastNum, Action action = null)
     {
         //number가 3이라면 0 1 2가 반복해서 들어오고
         //0 1 2 반복
@@ -58,9 +61,9 @@ public class UiManager : MonoBehaviour
         {
             float fadeTime = 0;
             int cout = 1;
-            float roopTime = 0.1f;
+            float roopTime = 0.04f;
             float removeSpeed = cout * roopTime;
-            Color tempColor = fadeInImg.color;
+            Color tempColor = fadeInImg.GetComponent<Image>().color;
             tempColor.a = (i % 2 != 0) ? 1 : 0;
             while (fadeTime <= cout)
             {
@@ -68,14 +71,18 @@ public class UiManager : MonoBehaviour
                 fadeTime += roopTime;
                 float removeSpeedABS = (i % 2 != 0) ? removeSpeed : -removeSpeed;
                 tempColor.a -= removeSpeedABS;
-                fadeInImg.color = tempColor;
+                if (fadeInImg == null)
+                {
+                    fadeInImg = GameObject.Find("fadeImg").GetComponent<Image>();
+                }
+                fadeInImg.GetComponent<Image>().color = tempColor;
                 yield return new WaitForSeconds(roopTime);
             }
         }
-            if (action != null)
-            {
-                action.Invoke();
-            }
+        if (action != null)
+        {
+            action.Invoke();
+        }
     }
 }
 

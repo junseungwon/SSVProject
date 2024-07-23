@@ -14,21 +14,13 @@ public class PlayerController : MonoBehaviour
 
     public Transform startTf;
     private RaycastHit hitInfo;
-    private Color color;
-    Vector2 pos;
-
-
-    public Text st;
-    public Text st1;
-    public Text st2;
-    public Text st3;
 
 
     private bool isTeleport = false;
     private void Awake()
     {
         GameManager.Instance.PlayerController = this;
-        DontDestroyOnLoad(gameObject);
+       
     }
     void Start()
     {
@@ -39,8 +31,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-       // st3.text = "select " + inputActions.actionMaps[5].actions[0].ReadValue<float>().ToString();
         ActivateTeleport();
         UIRayControllerActive();
     }
@@ -99,11 +89,6 @@ public class PlayerController : MonoBehaviour
             isTeleport = false;
         }
     }
-    private void CheckItemBox()
-    {
-
-    }
-
 }
 
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayStoryManager : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class PlayStoryManager : MonoBehaviour
     public void MoveNextMainScene()
     {
         SceneManager.LoadScene(1);
+        GameManager.Instance.UiManager.fadeInImg = GameObject.Find("fadeImg").GetComponent<Image>();
         GameManager.Instance.UiManager.PlayerFadeInOut(1, 2);
         sceneNumber = 1;
 
