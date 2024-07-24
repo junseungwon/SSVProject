@@ -14,80 +14,94 @@ public class PlanNote : MonoBehaviour
     [Header("PlanL 퀘스트 TEXT")]
     public string[] planNoteL;
 
-    private int planCnt = 0;
-    private int stepCnt = 0;
+    //plan의 단계와 게임안에 단계
+ 
 
     [SerializeField]
     private GameObject planTextUi = null;
     private void Awake()
     {
-        Debug.Log(1);
         GameManager.Instance.PlanNote = this;
         gameObject.SetActive(false);
+        //ResetTextSetting();
     }
-    private void OnEnable()
-    {
-        Debug.Log(2);
-    }
+ 
     // Start is called before the first frame update
     void Start()
     {
-        ResetTextSetting();
-        StartCoroutine(corutineTime());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
-    private IEnumerator corutineTime()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(3);
-            CompleteQuset();
 
-        }
-    }
     //PLAN TEXT부분을 GRIDLayer로 변경
     //PLAN에 새로 퀘스트 메세지를 추가하기
     public void AddQuset()
     {
-        stepCnt++;
-        GameObject childObj = planTextUi.transform.GetChild(stepCnt).gameObject;
+        Debug.Log("퀘스트를 추가함 "+ GameManager.Instance.PlayStoryManager.storyStep);
+
+        GameObject childObj = planTextUi.transform.GetChild(GameManager.Instance.PlayStoryManager.storyStep).gameObject;
         childObj.SetActive(true);
+        //안에 있는 text내용을 바꿈
+        ModifyQuest(childObj);
     }
-    //퀘스트가 완료 표시로 변환
-    public void CompleteQuset()
+    //퀘스트 내용을 value값만큼 수정함
+    public void ModifyQuset(int patternNum, int value)
     {
-        TextMeshProUGUI uiText = planTextUi.transform.GetChild(stepCnt).GetComponent<TextMeshProUGUI>();
-        //cnt를 받아와서 해당되는 text를 변경한다.
-        //변경한 내용을 UITEXT로 다시 바꾼다.
-        uiText.text = ChangeFinshText(uiText.text);
+        //수정할 TEXT를 받아옴
+        TextMeshProUGUI uiText = planTextUi.transform.GetChild(GameManager.Instance.PlayStoryManager.storyStep).GetComponent<TextMeshProUGUI>();
+
+        //해당되는 string배열을 찾아서 리턴
+        string[] array =CheckPlanNoteTextArray();
+
+        //퀘스트 내용을 value값만큼 수정함
+        uiText.text = ChangeFinshText(array[GameManager.Instance.PlayStoryManager.storyStep], patternNum, value);
+        Debug.Log("내용을 수정데이터로 바꿈");
+    }
+    //원본 데이터로 수정함
+    public void ModifyQuest(GameObject obj)
+    {
+        TextMeshProUGUI uiText = obj.GetComponent<TextMeshProUGUI>();
+
+        //해당되는 string배열을 찾아서 리턴
+        string[] array = CheckPlanNoteTextArray();
+        uiText.text = array[GameManager.Instance.PlayStoryManager.storyStep];
+        Debug.Log("내용을 원본데이터로 변경");
+    }
+    //퀘스트가 완료함
+    public void CompleteQuest()
+    {
+        Debug.Log("퀘스트가 완료됨");
+        TextMeshProUGUI uiText = planTextUi.transform.GetChild(GameManager.Instance.PlayStoryManager.storyStep).GetComponent<TextMeshProUGUI>();
         uiText.fontStyle = FontStyles.Italic;
-        //다음 퀘스트를 부여한다.
-        AddQuset();
+        //AddQuset();
     }
     //TEXT내용에서 0을 찾아서 1로 바꿔서 리턴
-    private string ChangeFinshText(string input)
+    private string ChangeFinshText(string input, int patternNum, int value )
     {
         string pattern = @"(\d+)/(\d+)"; // 숫자 패턴
-
+        int count = 0;
         // 정규 표현식을 사용하여 숫자 추출
         string result = Regex.Replace(input, pattern, match =>
         {
-            // 첫 번째 숫자는 0, 두 번째 숫자를 추출
             string secondNumber = match.Groups[2].Value;
-            return $"{secondNumber}/{secondNumber}"; // 두 번째 숫자로 교체
+            if (count == patternNum)
+            {
+                count++;
+                return $"{value}/{match.Groups[2].Value}";
+                // 첫 번째 숫자는 0, 두 번째 숫자를 추출
+            }
+            else
+            {
+                count++;
+                return $"{match.Groups[1].Value}/{match.Groups[2].Value}"; // 두 번째 숫자로 교체
+            }
         });
-
+        input = result;
         return result;
     }
     //PLAN노트의 단계에서 해당되는 STRING배열을 RETURN 
     private string[] CheckPlanNoteTextArray()
     {
-        switch (planCnt)
+        switch (GameManager.Instance.PlayStoryManager.chapterStep)
         {
             case (int)PlanNoteStep.P:
                 return planNoteP;
@@ -103,25 +117,20 @@ public class PlanNote : MonoBehaviour
                 return null;
         }
     }
-    private void ResetTextSetting()
+    //추가한 quest들을 초기화
+    public void ResetTextSetting()
     {
         string[] textArray = CheckPlanNoteTextArray();
         for (int i = 0; i < textArray.Length; i++)
         {
             GameObject childObj = planTextUi.transform.GetChild(i).gameObject;
-            if (i == 0) { childObj.SetActive(true); } else { childObj.SetActive(false); }
+            childObj.SetActive(false);
             childObj.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Normal;
             childObj.GetComponent<TextMeshProUGUI>().text = textArray[i];
         }
     }
-    private void NextPlanNoteStep()
-    {
-        ResetTextSetting();
-        planCnt++;
-        stepCnt = 0;
-    }
 }
 public enum PlanNoteStep
 {
-    P, N, A, L
+    NO ,P, N, A, L
 }

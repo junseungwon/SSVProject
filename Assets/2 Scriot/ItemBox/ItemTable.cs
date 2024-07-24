@@ -10,7 +10,7 @@ public class ItemTable : MonoBehaviour
     [SerializeField]
     private Dictionary<int, ItemData> itemTable = new Dictionary<int, ItemData>();
     [SerializeField]
-    private GameObject[] itemObj = new GameObject[10];
+    private GameObject[] itemObj = new GameObject[13];
 
     private void Awake()
     {
@@ -82,6 +82,11 @@ public class ItemTable : MonoBehaviour
 public enum ItemDBOrder
 {
     CodeNum, Name, Inform, GameObject
+}
+public enum ItemName
+{
+    나뭇가지 = 100, 통나무 = 110, 깐통나무 = 115, 나무줄기 = 120, 나뭇잎 =130, 노끈 = 140, 나무창 = 150, 모닥불 =160, 
+    돌 = 170, 바구니 = 180, 움막 = 190, 나무 =200
 }
 public class ItemData
 {

@@ -11,7 +11,7 @@ public class Tree : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Knife")
+        if(collision.gameObject.name == "170")
         {
             DeadTree();
            // hp -= 10;
@@ -22,6 +22,11 @@ public class Tree : MonoBehaviour
     {
         Debug.Log("나무가 죽음");
        Animation animation= GetComponentInChildren<Animation>();
+        //나무 채굴 타이밍이면
+        if (GameManager.Instance.PlayStoryManager.chapterStep == 1 && GameManager.Instance.PlayStoryManager.storyStep==1)
+        {
+            GameManager.Instance.PlayStoryManager.chapterManager[1].GetComponent<Chapter1>().CompleteCutTree();
+        }
         animation.Play();
         
     }

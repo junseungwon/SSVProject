@@ -18,9 +18,13 @@ MonoBehaviour:
     Type: Consumable
     Inform: "\uB098\uBB47\uAC00\uC9C0 \uC785\uB2C8\uB2E4."
   - CodeName: 110
-    Name: "\uB098\uBB34 \uB9C9\uB300\uAE30"
+    Name: "\uD1B5\uB098\uBB34"
     Type: Consumable
-    Inform: "\uB098\uBB34 \uB9C9\uB300\uAE30 \uC785\uB2C8\uB2E4."
+    Inform: "\uD1B5\uB098\uBB34 \uC785\uB2C8\uB2E4."
+  - CodeName: 115
+    Name: "\uAE50 \uD1B5\uB098\uBB34"
+    Type: Consumable
+    Inform: "\uAE50 \uD1B5\uB098\uBB34 \uC785\uB2C8\uB2E4."
   - CodeName: 120
     Name: "\uB098\uBB34 \uC904\uAE30"
     Type: Consumable
@@ -53,22 +57,26 @@ MonoBehaviour:
     Name: "\uC6C0\uB9C9"
     Type: Install
     Inform: "\uC6C0\uB9C9 \uC785\uB2C8\uB2E4."
+  - CodeName: 200
+    Name: "\uB098\uBB34"
+    Type: Envirment
+    Inform: "\uB098\uBB34\uC785\uB2C8\uB2E4."
   ItemComebine:
-  - Item1: 100
-    Name1: "\uB098\uBB47\uAC00\uC9C0"
-    Count1: 2
+  - Item1: 110
+    Name1: "\uD1B5\uB098\uBB34"
+    Count1: 1
     Item2: 0
     Name2: 
     Count2: 0
     Item3: 0
     Name3: 
     Count3: 0
-    CompletedItem: 110
+    CompletedItem: 115
     CompletedItemName: 
-    CompletedCount: 2
+    CompletedCount: 1
   - Item1: 120
     Name1: "\uB098\uBB34\uC904\uAE30"
-    Count1: 5
+    Count1: 1
     Item2: 0
     Name2: 
     Count2: 0
@@ -78,8 +86,8 @@ MonoBehaviour:
     CompletedItem: 140
     CompletedItemName: 
     CompletedCount: 5
-  - Item1: 110
-    Name1: "\uB098\uBB34 \uB9C9\uB300\uAE30"
+  - Item1: 115
+    Name1: "\uAE50 \uD1B5\uB098\uBB34"
     Count1: 2
     Item2: 130
     Name2: "\uB098\uBB47\uC78E"
@@ -105,8 +113,8 @@ MonoBehaviour:
   - Item1: 170
     Name1: "\uB3CC"
     Count1: 1
-    Item2: 110
-    Name2: "\uB098\uBB34\uB9C9\uB300\uAE30"
+    Item2: 100
+    Name2: "\uB098\uBB47\uAC00\uC9C0"
     Count2: 1
     Item3: 140
     Name3: "\uB178\uB048"

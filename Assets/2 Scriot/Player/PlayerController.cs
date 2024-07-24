@@ -1,61 +1,53 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 public class PlayerController : MonoBehaviour
 {
+    [Header("ActionMap")]
     public InputActionAsset inputActions;
 
+    [Header("Teleport컨트롤러")]
     public GameObject teleportRayController;
+
+    [Header("Ray컨트롤러")]
     public GameObject rightRayController;
     public GameObject leftRayController;
-    public GameObject rightDirController;
 
-
-    public Transform startTf;
-    private RaycastHit hitInfo;
+    [Header("Dir컨트롤러")]
+    public CustomDirController leftDirController;
+    public CustomDirController rightDirController;
 
 
     private bool isTeleport = false;
     private void Awake()
     {
         GameManager.Instance.PlayerController = this;
-       
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(teleportRayController.GetComponent<XRInteractorLineVisual>().reticle.gameObject);
+        DontDestroyOnLoad(teleportRayController.GetComponent<XRInteractorLineVisual>().blockedReticle.gameObject);
     }
-    void Start()
+    private void Start()
+    {
+        Setting();
+    }
+    private void Setting()
     {
 
     }
-
-
     // Update is called once per frame
     void Update()
     {
         ActivateTeleport();
         UIRayControllerActive();
     }
-    //uiray활성화
-    private void RayCheckUi()
-    {
-        if (Physics.Raycast(startTf.position, startTf.forward, out hitInfo, Mathf.Infinity))
-        {
-            if ((hitInfo.collider.tag == "UI") && isTeleport == false)
-            {
-                rightRayController.SetActive(true);
-            }
-        }
-        else
-        {
-            rightRayController.SetActive(false);
-        }
-    }
-    //2 5중에 0
-    //UIRayController활성화
     private void UIRayControllerActive()
     {
         UIRayControllerActive(2, leftRayController);
         UIRayControllerActive(5, rightRayController);
     }
+
     private void UIRayControllerActive(int num, GameObject obj)
     {
         float selectBt = inputActions.actionMaps[num].actions[2].ReadValue<float>();
@@ -82,6 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             if(isTeleport == true)
             {
+
                 transform.position = teleportRayController.GetComponent<XRInteractorLineVisual>().reticle.transform.position;
                 isTeleport = false;
             }
@@ -93,6 +86,23 @@ public class PlayerController : MonoBehaviour
 
 
 
+    ////uiray활성화
+    //private void raycheckui()
+    //{
+    //    if (physics.raycast(starttf.position, starttf.forward, out hitinfo, mathf.infinity))
+    //    {
+    //        if ((hitinfo.collider.tag == "ui") && isteleport == false)
+    //        {
+    //            rightraycontroller.setactive(true);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        rightraycontroller.setactive(false);
+    //    }
+    //}
+    //2 5중에 0
+    //UIRayController활성화
 
 //#region Action-based
 //[SerializeField] private InputActionReference m_LeftSelectRef;

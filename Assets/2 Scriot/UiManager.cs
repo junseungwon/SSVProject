@@ -15,6 +15,8 @@ public class UiManager : MonoBehaviour
 
     public Image fadeInImg;
 
+    [SerializeField]
+    private TextMeshProUGUI subtitleMessageText;
 
     private void Awake()
     {
@@ -33,6 +35,14 @@ public class UiManager : MonoBehaviour
 
     }
 
+    public void ChangeSubTitleMessageText(string textDB)
+    {
+        if(subtitleMessageText != null)
+        {
+          subtitleMessageText =  GameObject.Find("subtitleMessageText").GetComponent<TextMeshProUGUI>();
+        }
+        subtitleMessageText.text = textDB;
+    }
     //실시간 수치 적용
     public void PlayerInformTextChange()
     {

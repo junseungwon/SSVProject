@@ -12,9 +12,10 @@ public class PlayStoryManager : MonoBehaviour
     //chapter안에 스토리 단계
     public int storyStep = 0;
 
-    public int sceneNumber = 0;
-
+    //챕터들 관리
     public GameObject[] chapterManager;
+
+
     private void Awake()
     {
         GameManager.Instance.PlayStoryManager = this;
@@ -22,39 +23,56 @@ public class PlayStoryManager : MonoBehaviour
 
     private void Start()
     {
-        //GameManager.Instance.PlayStoryManager = this;
         PlayThisChapter();
     }
     public void PlayNextChapter()
     {
+        //단계 상승
         chapterStep++;
         storyStep = 0;
+
+        //plan퀘스트에 추가했던 부분들을 리셋
+        GameManager.Instance.PlanNote.ResetTextSetting();
+
+        //현재 챕터를 실행함
         PlayThisChapter();
     }
+    //현재 챕터를 실행함
     private void PlayThisChapter()
     {
         chapterManager[chapterStep].GetComponent<ChapterManager>().ThisChapterPlay();
     }
 
-
+    //메인 씬으로 이동
     public void MoveNextMainScene()
     {
         SceneManager.LoadScene(1);
-        GameManager.Instance.UiManager.fadeInImg = GameObject.Find("fadeImg").GetComponent<Image>();
         GameManager.Instance.UiManager.PlayerFadeInOut(1, 2);
-        sceneNumber = 1;
-
     }
+    //시작씬으로 이동하기
     public void MoveNextStartScene()
     {
         chapterStep = 0;
         storyStep = 0;
-        sceneNumber = 0;
         SceneManager.LoadScene(0);
     }   
 }
+//chapter들에서 공통적으로 작용할 interface
 public interface ChapterManager
 {
     //현재 챕터를 가져옴
     public void ThisChapterPlay();
+}
+//아이템 코드, 필요한 개수, 현재 가지고 있는 물건의 개수를 class로
+public class QuestItemDB
+{
+    public int codeNaem;
+    public int requireCnt;
+    public int getCnt;
+    public QuestItemDB(int codeNaem, int requireCnt, int getCnt)
+    {
+        this.codeNaem = codeNaem;
+        this.requireCnt = requireCnt;
+        this.getCnt = getCnt;
+    }
 }
