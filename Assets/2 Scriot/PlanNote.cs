@@ -37,7 +37,6 @@ public class PlanNote : MonoBehaviour
     public void AddQuset()
     {
         Debug.Log("퀘스트를 추가함 "+ GameManager.Instance.PlayStoryManager.storyStep);
-
         GameObject childObj = planTextUi.transform.GetChild(GameManager.Instance.PlayStoryManager.storyStep).gameObject;
         childObj.SetActive(true);
         //안에 있는 text내용을 바꿈

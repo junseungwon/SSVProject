@@ -3388,17 +3388,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   excelDB: {fileID: 11400000, guid: 73263dcfc09208e42be72fb5b82e4d55, type: 2}
   itemObj:
-  - {fileID: 0}
-  - {fileID: 1252600604797216942, guid: ee4aa60743e621c439613a3182840ff4, type: 3}
-  - {fileID: 0}
-  - {fileID: 2070095920539662325, guid: 7cbad2affa98d954096e8027132b371a, type: 3}
-  - {fileID: 2786531010543335817, guid: acce7bd41e714b243aba03de045830ec, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 9128491202283201116, guid: 5189e8b8a57eac44891aa368ba910dff, type: 3}
+  - {fileID: 7124791545901019417, guid: 49196c2151a93ac429ab3ca79618ce00, type: 3}
+  - {fileID: 7124791545901019417, guid: 9aa685d74f8ced24685aeb84ce2f2a3d, type: 3}
+  - {fileID: 7124791545901019417, guid: d1bd1bc02b5fd6841b62ce1ae4e16c54, type: 3}
+  - {fileID: 7124791545901019417, guid: 70e37b848a078d549bde6e02570ef17e, type: 3}
+  - {fileID: 7124791545901019417, guid: 388b9887291c8624dab22b07cb1952db, type: 3}
+  - {fileID: 7124791545901019417, guid: 12897e757f503ea459f159c59789ef75, type: 3}
+  - {fileID: 7124791545901019417, guid: 82bee5913ff1a15488add0cdea791bfb, type: 3}
+  - {fileID: 7124791545901019417, guid: fe275f8cd354b044885d277a698a2b64, type: 3}
+  - {fileID: 7124791545901019417, guid: 034acd5449a15d541978b5cb750e0c58, type: 3}
+  - {fileID: 7124791545901019417, guid: eb3c975cf10d1634db5c2c014dcb70ad, type: 3}
+  - {fileID: 7124791545901019417, guid: a07cfed6e694bc44cbfcf592a7fad3e8, type: 3}
+  - {fileID: 7124791545901019417, guid: d5dbf48d540753449801cfd8ece300b3, type: 3}
 --- !u!114 &836436710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3937,8 +3938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planNoteP:
   - "(\uB3CC 0/1\uAC1C \uB97C \uC8FC\uC6B0\uC138\uC694)"
-  - "(\uB3CC\uB85C \uB098\uBB47\uC78E 0/5\uAC1C \uB098\uBB34 \uC904\uAE30 0/5\uAC1C\uB97C
-    \uCC44\uC9D1\uD558\uC138\uC694) "
+  - "(\uB3CC\uB85C \uB098\uBB34 0/1\uAC1C\uB97C \uC798\uB77C\uC8FC\uC138\uC694)"
   - "(\uC81C\uC791\uB300\uC5D0\uC11C \uC778\uBCA4\uD1A0\uB9AC\uB97C 0/1 \uAC1C \uC81C\uC791\uD558\uC138\uC694)"
   - "(\uB098\uBB47\uC78E 0/20\uAC1C \uB098\uBB34 \uC904\uAE30 0/20\uAC1C\uB97C \uCC44\uC9D1\uD558\uC138\uC694)"
   - "(\uD574\uB2F9 \uC7A5\uC18C\uB85C \uC774\uB3D9\uD558\uC138\uC694)"
@@ -9089,6 +9089,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013343448}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2025403843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025403845}
+  - component: {fileID: 2025403844}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2025403844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025403843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54869c242e9e8b40b32d936794454a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemsDB: {fileID: 11400000, guid: 76503ae453301b44491e411cb7e658e2, type: 2}
+--- !u!4 &2025403845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025403843}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0981455, y: 0.16, z: -0.5804417}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2129387050
 GameObject:
   m_ObjectHideFlags: 0
@@ -9562,3 +9607,4 @@ SceneRoots:
   - {fileID: 1147950408}
   - {fileID: 836436712}
   - {fileID: 451929961}
+  - {fileID: 2025403845}

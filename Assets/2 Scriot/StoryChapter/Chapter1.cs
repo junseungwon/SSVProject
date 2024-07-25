@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -43,7 +44,7 @@ public class Chapter1 : MoveGuide, ChapterManager
     {
         questItemDBs[(int)ItemType.GetRock,0] = new QuestItemDB((int)ItemName.돌 ,1, 0);
 
-        questItemDBs[(int)ItemType.CutTree,0] = new QuestItemDB((int)ItemName.나뭇잎 ,1, 1);
+        questItemDBs[(int)ItemType.CutTree,0] = new QuestItemDB((int)ItemName.나뭇잎 ,1, 0);
 
         questItemDBs[(int)ItemType.MakeInven,0] = new QuestItemDB((int)ItemName.바구니 ,1, 0);
 
@@ -146,13 +147,15 @@ public class Chapter1 : MoveGuide, ChapterManager
     private void MoveToTree()
     {
         //tree지역으로 이동하라고 지시함
-        CalculateNearPlayerPos(0, CutTree);
+        GuideNextMovingArea(0, CutTree);
+
         //나무한테로 이동하라는 메세지를 보냄
         messageNum++;
         GameManager.Instance.UiManager.ChangeSubTitleMessageText(subtitleMessageText[messageNum]);
     }
     private void CutTree()
     {
+        Debug.Log("나무 이동이 완료되었습니다.");
         AddQuest();
     }
     public void CompleteCutTree()

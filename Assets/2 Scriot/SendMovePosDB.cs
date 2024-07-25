@@ -44,7 +44,7 @@ public class SendMovePosDB : MonoBehaviour
                     GameManager.Instance.PlayStoryManager.chapterManager[(int)ChapterStep.Chapter0].GetComponent<Chapter0>().movePos = chapter0;
                     break;
                 case (int)ChapterStep.Chapter1:
-                    GameManager.Instance.PlayStoryManager.chapterManager[(int)ChapterStep.Chapter1].GetComponent<Chapter0>().movePos = chapter1;
+                    GameManager.Instance.PlayStoryManager.chapterManager[(int)ChapterStep.Chapter1].GetComponent<Chapter1>().movePos = chapter1;
                     break;
                
             }

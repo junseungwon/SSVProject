@@ -15,11 +15,11 @@ public class ItemTable : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.itemTable = this;
+        CombineExcelDB();
         
     }
     private void Start()
     {
-        CombineExcelDB();
     }
     //엑셀 데이터를 받아와서 itemTable로 변경
     private void CombineExcelDB()

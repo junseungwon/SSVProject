@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tree : MonoBehaviour
+public class Tree : DropItem
 {
     private int hp = 100;
     private void Start()
@@ -20,6 +20,7 @@ public class Tree : MonoBehaviour
     }
     private void DeadTree()
     {
+        DropItems();
         Debug.Log("나무가 죽음");
        Animation animation= GetComponentInChildren<Animation>();
         //나무 채굴 타이밍이면

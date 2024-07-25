@@ -15,7 +15,7 @@ public class Chapter0 : MoveGuide, ChapterManager
     public void ThisChapterPlay()
     {
         HowToPlay();
-        IFPutTube();
+        //IFPutTube();
         //GameManager.Instance.PlayerController.leftDirController.selectEntered.AddListener(LeftGrabRockItem);
     }
 

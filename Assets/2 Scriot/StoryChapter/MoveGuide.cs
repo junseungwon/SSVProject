@@ -17,6 +17,7 @@ public class MoveGuide : MonoBehaviour
         float distance = 100.0f;
         while (distance >= 1.0f)
         {
+            //Debug.Log(distance);
             distance = Vector3.Distance(GameManager.Instance.player.transform.position, movePos[num].position);
             yield return new WaitForSeconds(0.1f);
         }
@@ -27,7 +28,9 @@ public class MoveGuide : MonoBehaviour
 
     protected void GuideNextMovingArea(int num, Action action)
     {
+        Debug.Log("움직임 가이드가 실행되었습니다.");
         teleportGudieObj = Instantiate(teleportGuidePrefab, movePos[num].transform.position, Quaternion.identity);
+        teleportGudieObj.SetActive(true);
         StartCoroutine(CalculateNearPlayerPos(num, action));
     }
 }
