@@ -6,7 +6,10 @@ public class DropItem : MonoBehaviour
 {
     //드랍할 아이템들
     public DropItemsDB dropItemsDB;
-
+    private void Start()
+    {
+        DropItems();
+    }
     public void DropItems()
     {
         Vector3 v3 = transform.position;
@@ -16,11 +19,11 @@ public class DropItem : MonoBehaviour
         {
             for(int j=0; j < dropItemsDB.ItemsCount[i]; j++)
             {
-                float numX=(Random.Range(0, 1)==1)? 0.1f: -0.1f;
-                float numZ=(Random.Range(0, 1)==1)? 0.1f: -0.1f;
-                v3.x -= numX;
-                v3.z-= numZ;
-                Instantiate(GameManager.Instance.itemTable.GetDBGameObject(dropItemsDB.ItemsCode[i]), v3, Quaternion.identity);
+                float numX=(Random.Range(0, 1)==1)? 0.02f: -0.02f;
+                float numZ=(Random.Range(0, 1)==1)? 0.02f: -0.02f;
+                v3.x += numX;
+                v3.z += numZ;
+                Instantiate(GameManager.Instance.itemTable.GetDBGameObject(dropItemsDB.ItemsCode[i]), v3, Quaternion.identity).name = dropItemsDB.ItemsCode[i].ToString();
             }
         }
     }

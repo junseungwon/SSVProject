@@ -13,14 +13,13 @@ public class MakeItemBox : MonoBehaviour
 
 
     [Header("아이템 Complete")]
-    [SerializeField]
-    private GameObject completeItemParent = null;
-    private GameObject completeItem = null;
-    private int completeItemCode = 0;
+    public GameObject completeItemParent = null;
+    public GameObject completeItem = null;
+    public int completeItemCode = 0;
+    public int completeItemCount = 0;
     private void Awake()
     {
-        GameManager.Instance.MakeItemBox = this;
-        
+        GameManager.Instance.MakeItemBox = this;   
     }
     private void Start()
     {
@@ -104,7 +103,7 @@ public class MakeItemBox : MonoBehaviour
         }
     }
 
-    private void ItemSetting(GameObject item, GameObject parentObj)
+    public void ItemSetting(GameObject item, GameObject parentObj)
     {
         item.transform.parent = parentObj.transform;
         item.transform.position = parentObj.transform.GetChild(1).position;
@@ -132,9 +131,11 @@ public class MakeItemBox : MonoBehaviour
         if (itemNumber != 0)
         {
             GameObject item = Instantiate(GameManager.Instance.itemTable.GetDBGameObject(GameManager.Instance.itemTable.excelDB.ItemComebine[itemNumber].CompletedItem));
-            
+            completeItemCode = GameManager.Instance.itemTable.excelDB.ItemComebine[itemNumber].CompletedItem;
+            item.name = completeItemCode.ToString();
             //CompleteItem의 textui개수를 바꿈
-            completeItemParent.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = GameManager.Instance.itemTable.excelDB.ItemComebine[itemNumber].CompletedCount.ToString();
+            completeItemCount = GameManager.Instance.itemTable.excelDB.ItemComebine[itemNumber].CompletedCount;
+            TextCompleteItemNumUIChange();
             return item;
         }
         else
@@ -220,20 +221,35 @@ public class MakeItemBox : MonoBehaviour
     //기존 데이터 제거
     public void RemoveItems()
     {
-        Array.Clear(items, 0, items.Length);
         Array.Clear(itemCount, 0, itemCount.Length);
-        completeItem = null;
-        completeItemCode = 0;
         for (int i = 0; i < 3; i++)
         {
             Destroy(items[i]);
             TextNumUIChange(i);
         }
-        completeItemParent.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = completeItemCode.ToString();
-
+        Array.Clear(items, 0, items.Length);
+        TextCompleteItemNumUIChange();
     }
-    public void TextNumUIChange(int num)
+    public void RemoveCompleteItem()
+    {
+        completeItemCode = 0;
+        completeItem = null;
+    }
+    public void GetOutCompleteItem()
+    {
+        //새로 생성해서 기존 아이템을 새로 대체
+        completeItem = Instantiate(completeItem);
+        completeItem.name = completeItemCode.ToString();
+        ItemSetting(completeItem, completeItemParent);
+        completeItemCount -= 1;
+        TextCompleteItemNumUIChange();
+    }
+    private void TextNumUIChange(int num)
     {
         itemsParent[num].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = itemCount[num].ToString();
+    }
+    public void TextCompleteItemNumUIChange()
+    {
+        completeItemParent.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = completeItemCount.ToString();
     }
 }

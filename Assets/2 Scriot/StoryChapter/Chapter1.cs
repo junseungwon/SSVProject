@@ -158,6 +158,7 @@ public class Chapter1 : MoveGuide, ChapterManager
         Debug.Log("나무 이동이 완료되었습니다.");
         AddQuest();
     }
+    //나무를 베었으면 나무 베기 퀘스트가 종료되고 다음 단계 바구니 만들기로 넘어감
     public void CompleteCutTree()
     {
         Debug.Log("나무베기 퀘스트 종료");
@@ -165,13 +166,19 @@ public class Chapter1 : MoveGuide, ChapterManager
         PlayAction();
     }
 
+    //바구니 만들기 퀘스트가 발생
     private void MakeInven()
     {
         AddQuest();
+        //완성 인벤토리를 꺼냈을 때 바구니 제작 퀘스트가 완료된다.
+        GameManager.Instance.MakeItemBox.completeItemParent.transform.GetChild(2).GetComponent<GetOutCompleteItem>().getAction = CompleteMakeInven;
     }
 
+    //인벤토리 제작 완료가 되었으면 다음 단계 움집 재료 모으기가 시작함
     public void CompleteMakeInven()
     {
+        //추가한 이벤트 초기화
+        GameManager.Instance.MakeItemBox.completeItemParent.transform.GetChild(2).GetComponent<GetOutCompleteItem>().getAction = null;
         Debug.Log("인벤 만들기 종료");
         CompleteSingleStep((int)ItemType.MakeInven);
         PlayAction();
@@ -194,15 +201,15 @@ public class Chapter1 : MoveGuide, ChapterManager
         Debug.Log("재료 수집 종료");
     }
 
-
+    //퀘스트가 추가됨
     private void AddQuest()
     {
         messageNum++;
         GameManager.Instance.UiManager.ChangeSubTitleMessageText(subtitleMessageText[messageNum]);
-
         GameManager.Instance.PlanNote.AddQuset();
     }
 
+    //다음 단계로 넘어감
     private void CompleteSingleStep(int stepNum)
     {
         questItemDBs[stepNum, 0].getCnt += 1;

@@ -4,9 +4,12 @@ using UnityEngine;
 public class ItemBox : MonoBehaviour
 {
     public ItemBoxData[] itemBoxs = new ItemBoxData[9];
+
+    private GameObject playerAbsorbColider = null;
     private void Awake()
     {
         GameManager.Instance.ItemBox = this;
+        //GameManager.Instance.c
         
     }
     void Start()
