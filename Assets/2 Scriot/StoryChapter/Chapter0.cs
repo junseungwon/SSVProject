@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class Chapter0 : MoveGuide, ChapterManager
+public class Chapter0 : ChapterManager, ChapterInterFace
 {
 
     //현재 챕터에 시작
@@ -48,7 +48,7 @@ public class Chapter0 : MoveGuide, ChapterManager
             currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             yield return new WaitForSeconds(0.1f);
         }
-        GuideNextMovingArea(0,BallNearPlayer) ;
+        GameManager.Instance.PlayMoveGuideManager.GuideNextMovingArea(0,BallNearPlayer) ;
     }
     
     //배구공이 플레이어와 가까이 갔을 때

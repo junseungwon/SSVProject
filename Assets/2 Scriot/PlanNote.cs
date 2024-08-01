@@ -48,11 +48,8 @@ public class PlanNote : MonoBehaviour
         //수정할 TEXT를 받아옴
         TextMeshProUGUI uiText = planTextUi.transform.GetChild(GameManager.Instance.PlayStoryManager.storyStep).GetComponent<TextMeshProUGUI>();
 
-        //해당되는 string배열을 찾아서 리턴
-        string[] array =CheckPlanNoteTextArray();
-
         //퀘스트 내용을 value값만큼 수정함
-        uiText.text = ChangeFinshText(array[GameManager.Instance.PlayStoryManager.storyStep], patternNum, value);
+        uiText.text = ChangeFinshText(patternNum, value);
         Debug.Log("내용을 수정데이터로 바꿈");
     }
     //원본 데이터로 수정함
@@ -74,27 +71,32 @@ public class PlanNote : MonoBehaviour
         //AddQuset();
     }
     //TEXT내용에서 0을 찾아서 1로 바꿔서 리턴
-    private string ChangeFinshText(string input, int patternNum, int value )
+    private string ChangeFinshText(int patternNum, int value )
     {
+        //
+        string[] array = CheckPlanNoteTextArray();
+        Debug.Log("숫자를 바꾸겠습니다.");
         string pattern = @"(\d+)/(\d+)"; // 숫자 패턴
         int count = 0;
         // 정규 표현식을 사용하여 숫자 추출
-        string result = Regex.Replace(input, pattern, match =>
+        string result = Regex.Replace(array[GameManager.Instance.PlayStoryManager.storyStep], pattern, match =>
         {
-            string secondNumber = match.Groups[2].Value;
+            //string secondNumber = match.Groups[2].Value;
             if (count == patternNum)
             {
                 count++;
+                //Debug.Log($"{value}/{match.Groups[2].Value}");
                 return $"{value}/{match.Groups[2].Value}";
                 // 첫 번째 숫자는 0, 두 번째 숫자를 추출
             }
             else
             {
                 count++;
+                //Debug.Log($"{match.Groups[1].Value}/{match.Groups[2].Value}");
                 return $"{match.Groups[1].Value}/{match.Groups[2].Value}"; // 두 번째 숫자로 교체
             }
         });
-        input = result;
+        array[GameManager.Instance.PlayStoryManager.storyStep] = result;
         return result;
     }
     //PLAN노트의 단계에서 해당되는 STRING배열을 RETURN 

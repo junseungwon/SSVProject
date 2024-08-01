@@ -10,6 +10,8 @@ TagManager:
   - UI
   - ItemBox
   - InstallObject
+  - Item
+  - IsAbsorbItem
   layers:
   - Default
   - TransparentFX

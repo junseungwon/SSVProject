@@ -7,15 +7,17 @@ public class ItemGrabInteractive : GrabInteractive_JSW
     public int itemBoxParentNum = -1;
     public int makeBoxParentNum = -1;
     public Vector3 objScale = Vector3.zero;
-    public TextMeshProUGUI textUI = null;
+    private Rigidbody rb = null;
     // Start is called before the first frame update
     private void Awake()
     {
+        
         objScale = transform.localScale;
     }
     void Start()
     {
         base.Start();
+        rb = GetComponent<Rigidbody>();
         grabbable.selectEntered.AddListener(GrabItemBox);
         grabbable.selectExited.AddListener(GrabOutItemBox);
     }
@@ -23,7 +25,7 @@ public class ItemGrabInteractive : GrabInteractive_JSW
     // Update is called once per frame
     void Update()
     {
-        base.Update();
+
     }
 
 
@@ -52,17 +54,19 @@ public class ItemGrabInteractive : GrabInteractive_JSW
     {
         if (itemBoxParentNum > -1)
         {
-            GetComponent<Rigidbody>().isKinematic = false;
-            GetComponent<Rigidbody>().useGravity = true;
-            textUI.text = GameManager.Instance.ItemBox.itemBoxs[itemBoxParentNum].itemCount.ToString();
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            //해당되는 아이템 박스의 ui부분에 
+            GameManager.Instance.ItemBox.ChangeItemCountTextUI(itemBoxParentNum);
+           
             transform.parent = null;
             transform.localScale = objScale;
             itemBoxParentNum = -1;
         }
         if(makeBoxParentNum > -1)
         {
-            GetComponent<Rigidbody>().isKinematic = false;
-            GetComponent<Rigidbody>().useGravity = true;
+            rb.isKinematic = false;
+            rb.useGravity = true;
             transform.parent = null;
             transform.localScale = objScale;
             makeBoxParentNum = -1;

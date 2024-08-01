@@ -17,12 +17,16 @@ public class MakeItemBox : MonoBehaviour
     public GameObject completeItem = null;
     public int completeItemCode = 0;
     public int completeItemCount = 0;
+
+    public GetOutCompleteItem getOutCompleteItem = null;
     private void Awake()
     {
         GameManager.Instance.MakeItemBox = this;   
+        getOutCompleteItem = completeItemParent.transform.GetChild(1).GetComponent<GetOutCompleteItem>();
     }
     private void Start()
     {
+   
     }
 
     //+아이템을 제거했을 때도 코드 작성 필요함
@@ -127,8 +131,8 @@ public class MakeItemBox : MonoBehaviour
         }
 
         int itemNumber = CheckItems(listItemNum, cnt);
-
-        if (itemNumber != 0)
+        Debug.Log(itemNumber + "아이템 제작대 결과 입니다.");
+        if (itemNumber>=0)
         {
             GameObject item = Instantiate(GameManager.Instance.itemTable.GetDBGameObject(GameManager.Instance.itemTable.excelDB.ItemComebine[itemNumber].CompletedItem));
             completeItemCode = GameManager.Instance.itemTable.excelDB.ItemComebine[itemNumber].CompletedItem;
@@ -155,6 +159,7 @@ public class MakeItemBox : MonoBehaviour
         {
             if (IsThisSameThing(cnt, i, listItemNum))
             {
+                //Debug.Log(i+"리스트에 추가 되었습니다.");
                 storeInt.Add(listItemNum[i]);
             }
         }
@@ -166,7 +171,8 @@ public class MakeItemBox : MonoBehaviour
             }
             else
             {
-                completeItemCode = 0;
+                //Debug.Log(storeInt.Count + "list내용입니다.");
+                completeItemCode = -1;
             }
         }
         else
@@ -233,6 +239,8 @@ public class MakeItemBox : MonoBehaviour
     public void RemoveCompleteItem()
     {
         completeItemCode = 0;
+        completeItemCount = 0;
+
         completeItem = null;
     }
     public void GetOutCompleteItem()

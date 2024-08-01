@@ -26,6 +26,7 @@ public class Tree : DropItem
         //나무 채굴 타이밍이면
         if (GameManager.Instance.PlayStoryManager.chapterStep == 1 && GameManager.Instance.PlayStoryManager.storyStep==1)
         {
+            Debug.Log("나무자르기 완료");
             GameManager.Instance.PlayStoryManager.chapterManager[1].GetComponent<Chapter1>().CompleteCutTree();
         }
         animation.Play();

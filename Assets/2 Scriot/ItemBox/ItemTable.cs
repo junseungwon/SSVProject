@@ -12,6 +12,8 @@ public class ItemTable : MonoBehaviour
     [SerializeField]
     private GameObject[] itemObj = new GameObject[13];
 
+    [SerializeField]
+    private GameObject defaultItem = null;
     private void Awake()
     {
         GameManager.Instance.itemTable = this;
@@ -26,7 +28,7 @@ public class ItemTable : MonoBehaviour
     {
         for(int i=0; i<excelDB.ItemDB.Count; i++)
         {
-            itemTable.Add(excelDB.ItemDB[i].CodeName, new ItemData(excelDB.ItemDB[i].CodeName, excelDB.ItemDB[i].Name, excelDB.ItemDB[i].Type, excelDB.ItemDB[i].Inform, itemObj[i]));
+            itemTable.Add(excelDB.ItemDB[i].CodeName, new ItemData(excelDB.ItemDB[i].CodeName, excelDB.ItemDB[i].Name, excelDB.ItemDB[i].Type, excelDB.ItemDB[i].Inform, defaultItemSetting(itemObj[i])));
         }
     }
     //테이블 데이터 값들을 return 
@@ -73,8 +75,22 @@ public class ItemTable : MonoBehaviour
     {
         return new CombineItemElement(excelDB.ItemComebine[order].Item1, excelDB.ItemComebine[order].Name1, excelDB.ItemComebine[order].Count1);
     }
+    public void IsAbsorbItemsTagChange(GameObject obj)
+    {
+        obj.tag = "IsAbsorbItem";
+    }
+    public void ItemTag(GameObject obj) {
+        obj.tag = "Item";
+    }
+    private GameObject defaultItemSetting(GameObject obj)
+    {
+        if (obj == null)
+        {
+            return defaultItem;
+        }
 
-
+        return obj;
+    }
 
 }
 //데이터 순서가

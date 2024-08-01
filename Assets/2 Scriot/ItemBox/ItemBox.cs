@@ -1,16 +1,17 @@
-using UnityEditor.Rendering;
+using TMPro;
 using UnityEngine;
 
 public class ItemBox : MonoBehaviour
 {
     public ItemBoxData[] itemBoxs = new ItemBoxData[9];
-
+    [SerializeField]
+    private TextMeshProUGUI[] textUI = new TextMeshProUGUI[9];
     private GameObject playerAbsorbColider = null;
     private void Awake()
     {
         GameManager.Instance.ItemBox = this;
         //GameManager.Instance.c
-        
+
     }
     void Start()
     {
@@ -29,33 +30,45 @@ public class ItemBox : MonoBehaviour
 
     //충돌상태를 계속확인하고 grip을 해제했을 경우
     //해당되는 물체와 충돌하고 잡기를 해제했을 경우
-    public bool PutItem(int num, int code, GameObject obj)
+
+    public void PutItem(int num, int code, GameObject obj)
     {
         //해당되는 아이템이 없을 경우
         if (itemBoxs[num].itemCount == 0)
         {
-            int itemCount = itemBoxs[num].itemCount+1;
+            int itemCount = itemBoxs[num].itemCount + 1;
             itemBoxs[num] = new ItemBoxData(num, code, itemCount);
             StoreItem(num, obj);
             Debug.Log(itemCount);
-            Debug.Log("아이템이 추가되서 현재 아이템의 코드는 " + itemBoxs[num].code+" 아이템 수량은 " +itemBoxs[num].itemCount);
-            return true;
+            Debug.Log("아이템이 추가되서 현재 아이템의 코드는 " + itemBoxs[num].code + " 아이템 수량은 " + itemBoxs[num].itemCount);
+            ModifyItemData(num, obj);
         }
         //기존에 아이템이 존재하는 경우
-        else if (itemBoxs[num].code == code && itemBoxs[num].itemCount>=1)
+        else if (itemBoxs[num].code == code && itemBoxs[num].itemCount >= 1)
         {
             int itemCount = itemBoxs[num].itemCount + 1;
             itemBoxs[num].itemCount = itemCount;
             Destroy(obj);
             Debug.Log("아이템을 중복해서 넣엇습니다.");
             Debug.Log("아이템이 추가되서 현재 아이템의 코드는 " + itemBoxs[num].code + " 아이템 수량은 " + itemBoxs[num].itemCount);
-            return true;
+            ModifyItemData(num, obj);
         }
         else
         {
             Debug.Log("창고에 아이템이 존재합니다.");
-            return false;
+
         }
+    }
+    //아이템에 변경사항을 수정함
+    private void ModifyItemData(int parentIndex, GameObject item)
+    {
+        item.GetComponent<ItemGrabInteractive>().itemBoxParentNum = parentIndex;
+        item.GetComponent<Rigidbody>().isKinematic = true;
+        ChangeItemCountTextUI(parentIndex);
+    }
+    public void ChangeItemCountTextUI(int parentNum)
+    {
+        textUI[parentNum].text = itemBoxs[parentNum].itemCount.ToString();
     }
     //저장할 물체를 저장
     //해당객체와 충돌하고 물체를 잡았을 경우
@@ -74,7 +87,7 @@ public class ItemBox : MonoBehaviour
             Debug.Log("아이템이 추가되서 현재 아이템의 코드는 " + itemBoxs[num].code + " 아이템 수량은 " + itemBoxs[num].itemCount);
 
         }
-        else if(itemBoxs[num].itemCount == 1)
+        else if (itemBoxs[num].itemCount == 1)
         {
             itemBoxs[num] = new ItemBoxData(num, 0, 0);
             Debug.Log("아이템을 모두 가지가셧습니다. 아이템박스를 초기화하겠습니다.");

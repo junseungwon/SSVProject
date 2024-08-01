@@ -28,4 +28,6 @@ public class GameManager : MonoBehaviour
     public PlayStoryManager PlayStoryManager { get; set; }
 
     public PlanNote PlanNote { get; set; }
+
+    public PlayMoveGuideManager PlayMoveGuideManager { get; set; }
 }

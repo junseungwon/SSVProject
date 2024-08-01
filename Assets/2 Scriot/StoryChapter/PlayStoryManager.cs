@@ -40,7 +40,7 @@ public class PlayStoryManager : MonoBehaviour
     //현재 챕터를 실행함
     private void PlayThisChapter()
     {
-        chapterManager[chapterStep].GetComponent<ChapterManager>().ThisChapterPlay();
+        chapterManager[chapterStep].GetComponent<ChapterInterFace>().ThisChapterPlay();
     }
 
     //메인 씬으로 이동
@@ -55,10 +55,14 @@ public class PlayStoryManager : MonoBehaviour
         chapterStep = 0;
         storyStep = 0;
         SceneManager.LoadScene(0);
-    }   
+    }
+    public void NextStoryStep()
+    {
+        storyStep += 1;
+    }
 }
 //chapter들에서 공통적으로 작용할 interface
-public interface ChapterManager
+public interface ChapterInterFace
 {
     //현재 챕터를 가져옴
     public void ThisChapterPlay();

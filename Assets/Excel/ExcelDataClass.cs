@@ -19,6 +19,6 @@ public class ItemCombineData
     public string Name3;
     public int Count3;
     public int CompletedItem;
-    public string CompletedItemName;
+    public string CompletedItemName; 
     public int CompletedCount;
 }

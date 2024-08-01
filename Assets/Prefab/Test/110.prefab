@@ -103,7 +103,6 @@ MonoBehaviour:
   itemBoxParentNum: -1
   makeBoxParentNum: -1
   objScale: {x: 0, y: 0, z: 0}
-  textUI: {fileID: 0}
 --- !u!114 &1635807029065644054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +317,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 03f558147a50a7948af5dd632b86a2f4, type: 2}
+  - {fileID: 2100000, guid: d04f17468dfb1c04b875a13a6cf4fa96, type: 2}
   - {fileID: 2100000, guid: 9ed5d2c519f9b3a43a622b324cd42825, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

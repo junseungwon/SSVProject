@@ -41,12 +41,14 @@ public class SendMovePosDB : MonoBehaviour
             switch (i)
             {
                 case (int)ChapterStep.Chapter0:
-                    GameManager.Instance.PlayStoryManager.chapterManager[(int)ChapterStep.Chapter0].GetComponent<Chapter0>().movePos = chapter0;
+                    GameManager.Instance.PlayMoveGuideManager.chapter0MovePos = chapter0;
                     break;
                 case (int)ChapterStep.Chapter1:
-                    GameManager.Instance.PlayStoryManager.chapterManager[(int)ChapterStep.Chapter1].GetComponent<Chapter1>().movePos = chapter1;
+                    GameManager.Instance.PlayMoveGuideManager.chapter1MovePos = chapter1;
                     break;
-               
+                case (int)ChapterStep.Chapter2:
+                    GameManager.Instance.PlayMoveGuideManager.chapter2MovePos = chapter2;
+                    break;
             }
         }
     }

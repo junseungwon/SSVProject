@@ -61,6 +61,14 @@ MonoBehaviour:
     Name: "\uB098\uBB34"
     Type: Envirment
     Inform: "\uB098\uBB34\uC785\uB2C8\uB2E4."
+  - CodeName: 210
+    Name: "\uD398\uD2B8\uBCD1"
+    Type: Tool
+    Inform: "\uD398\uD2B8\uBCD1\uC785\uB2C8\uB2E4."
+  - CodeName: 220
+    Name: "\uCC9C"
+    Type: 'Tool '
+    Inform: "\uCC9C\uC785\uB2C8\uB2E4."
   ItemComebine:
   - Item1: 110
     Name1: "\uD1B5\uB098\uBB34"
@@ -72,7 +80,7 @@ MonoBehaviour:
     Name3: 
     Count3: 0
     CompletedItem: 115
-    CompletedItemName: 
+    CompletedItemName: "\uAE50 \uD1B5\uB098\uBB34"
     CompletedCount: 1
   - Item1: 120
     Name1: "\uB098\uBB34\uC904\uAE30"
@@ -84,7 +92,7 @@ MonoBehaviour:
     Name3: 
     Count3: 0
     CompletedItem: 140
-    CompletedItemName: 
+    CompletedItemName: "\uB178\uB048"
     CompletedCount: 5
   - Item1: 115
     Name1: "\uAE50 \uD1B5\uB098\uBB34"
@@ -96,7 +104,7 @@ MonoBehaviour:
     Name3: "\uB178\uB048"
     Count3: 2
     CompletedItem: 190
-    CompletedItemName: 
+    CompletedItemName: "\uC6C0\uB9C9"
     CompletedCount: 1
   - Item1: 140
     Name1: "\uB178\uB048"
@@ -108,7 +116,7 @@ MonoBehaviour:
     Name3: 
     Count3: 0
     CompletedItem: 180
-    CompletedItemName: 
+    CompletedItemName: "\uBC14\uAD6C\uB2C8"
     CompletedCount: 1
   - Item1: 170
     Name1: "\uB3CC"
@@ -120,7 +128,7 @@ MonoBehaviour:
     Name3: "\uB178\uB048"
     Count3: 2
     CompletedItem: 150
-    CompletedItemName: 
+    CompletedItemName: "\uB098\uBB34 \uCC3D"
     CompletedCount: 1
   - Item1: 100
     Name1: "\uB098\uBB47\uAC00\uC9C0"
@@ -132,5 +140,5 @@ MonoBehaviour:
     Name3: 
     Count3: 0
     CompletedItem: 160
-    CompletedItemName: 
+    CompletedItemName: "\uBAA8\uB2E5\uBD88"
     CompletedCount: 1

@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
 
+public delegate void GetAction();
 public class GetOutCompleteItem : MonoBehaviour
 {
     public Action getAction = null;
+    public GetAction dAction = null;
     //손으로 잡고 나갔으면 
     private void OnTriggerExit(Collider other)
     {
@@ -24,18 +26,23 @@ public class GetOutCompleteItem : MonoBehaviour
                 }
                 else
                 {
+                    if (dAction != null)
+                    {
+                        dAction();
+                    }
                     GameManager.Instance.MakeItemBox.RemoveCompleteItem();
-                    GameManager.Instance.MakeItemBox.TextCompleteItemNumUIChange();
-
                 }
                 GameManager.Instance.MakeItemBox.RemoveItems();
                 playerGrabObj.GetComponent<Rigidbody>().isKinematic = false;
                 playerGrabObj.GetComponent<Rigidbody>().useGravity = true;
+                //action을 사용
                 if (playerGrabObj.name == "180")
                 {
+                    Debug.Log("해당아이템은 180이 맞습니다.");
                     //인벤토리 코드번호 180번
                     if (getAction != null)
                     {
+                        Debug.Log("해당 액션을실행합니다.");
                         getAction.Invoke();
                     }
                 }

@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class AbsorbItems : MonoBehaviour
 {
-
+    public GetAction GetAction = null;
+    public int itemCode = 0;
     //물체랑 접촉했을 때 아이템이 소모형 아이템이면 흡수 아니면 흡수안함
     private void OnTriggerEnter(Collider other)
     {
         //해당 아이템 테그가 소모형 아이템인 경우만 흡수 가능
         //아이템을 잡고 있으면 해당 태그를 GrabItems로 바꿈
-        if (other.tag == "ConsumableItem")
+        if (other.tag == "IsAbsorbItem")
         {
+            Debug.Log("아이템을 흡수했습니다.");
             CheckInvenEmptyPlace(int.Parse(other.name), other.gameObject);
         }
     }
@@ -47,6 +49,16 @@ public class AbsorbItems : MonoBehaviour
     }
     private void PutItem(int num, int code, GameObject obj)
     {
+        Debug.Log(1);
+        itemCode = code;
+        if(GetAction != null)
+        {
+            Debug.Log("아이템이 넣어졌습니다.");
+            GetAction();
+        }
+        //기본 tag로 변경됨
+        GameManager.Instance.itemTable.ItemTag(obj);
+
         GameManager.Instance.ItemBox.PutItem(num, code, obj);
     }
     //아이템을 가져오면 해당 아이템이 흡수가 가능한지 확인함
