@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1635807029065644054}
   m_Layer: 0
   m_Name: 180
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,10 +100,10 @@ MonoBehaviour:
   hand_Transfrom: []
   infromUi: {fileID: 0}
   textObject: []
+  itemdb: {fileID: 0}
   itemBoxParentNum: -1
   makeBoxParentNum: -1
   objScale: {x: 0, y: 0, z: 0}
-  textUI: {fileID: 0}
 --- !u!114 &1635807029065644054
 MonoBehaviour:
   m_ObjectHideFlags: 0

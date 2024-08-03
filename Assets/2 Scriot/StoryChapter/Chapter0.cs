@@ -15,7 +15,7 @@ public class Chapter0 : ChapterManager, ChapterInterFace
     public void ThisChapterPlay()
     {
         HowToPlay();
-        IFPutTube();
+       IFPutTube();
         //GameManager.Instance.PlayerController.leftDirController.selectEntered.AddListener(LeftGrabRockItem);
     }
 

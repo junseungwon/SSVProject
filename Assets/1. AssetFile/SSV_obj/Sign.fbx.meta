@@ -3,7 +3,12 @@ guid: bb52bcaf8c690a0488a31133bb77ae0a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Signss
+    second: {fileID: 2100000, guid: c5efe2eb716b4564f859293571b90cc6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

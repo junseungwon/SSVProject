@@ -4,6 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ItemGrabInteractive : GrabInteractive_JSW
 {
+    public ItemDB itemdb;
     public int itemBoxParentNum = -1;
     public int makeBoxParentNum = -1;
     public Vector3 objScale = Vector3.zero;

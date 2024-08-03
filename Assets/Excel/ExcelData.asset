@@ -69,6 +69,18 @@ MonoBehaviour:
     Name: "\uCC9C"
     Type: 'Tool '
     Inform: "\uCC9C\uC785\uB2C8\uB2E4."
+  - CodeName: 230
+    Name: "\uC0B0\uB538\uAE30"
+    Type: Consumable
+    Inform: "\uC0B0\uB538\uAE30\uC785\uB2C8\uB2E4."
+  - CodeName: 240
+    Name: "\uC624\uB514"
+    Type: Consumable
+    Inform: "\uC624\uB514\uC785\uB2C8\uB2E4."
+  - CodeName: 250
+    Name: "\uBB3C\uACE0\uAE30"
+    Type: Consumable
+    Inform: "\uBB3C\uACE0\uAE30\uC785\uB2C8\uB2E4"
   ItemComebine:
   - Item1: 110
     Name1: "\uD1B5\uB098\uBB34"

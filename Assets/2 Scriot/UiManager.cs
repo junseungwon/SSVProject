@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class UiManager : MonoBehaviour
 {
 
-    [SerializeField]
-    private TextMeshProUGUI[] playerInfromText;
+    //[SerializeField]
+    //private TextMeshProUGUI[] playerInfromText;
 
     [SerializeField]
     private Image[] playerInfromImage;
@@ -23,18 +23,6 @@ public class UiManager : MonoBehaviour
         GameManager.Instance.UiManager = this;
 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ChangeSubTitleMessageText(string textDB)
     {
         if(subtitleMessageText != null)
@@ -46,11 +34,11 @@ public class UiManager : MonoBehaviour
     //실시간 수치 적용
     public void PlayerInformTextChange()
     {
-        playerInfromText[0].text = GameManager.Instance.PlayerData.Hp.ToString();
-        playerInfromText[1].text = GameManager.Instance.PlayerData.Thirsty.ToString();
-        playerInfromText[2].text = GameManager.Instance.PlayerData.Hungry.ToString();
+        //playerInfromText[0].text = GameManager.Instance.PlayerData.Hp.ToString();
+        //playerInfromText[1].text = GameManager.Instance.PlayerData.Thirsty.ToString();
+        //playerInfromText[2].text = GameManager.Instance.PlayerData.Hungry.ToString();
     }
-    public void PlayerInformImageValueChange(int num, int dataValue)
+    public void PlayerInformImageValueChange(int num, float dataValue)
     {
         //1000으로 계산하면 여기다가 0.001을 곱한다.        
         playerInfromImage[num].fillAmount = dataValue * 0.001f;

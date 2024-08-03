@@ -49,6 +49,12 @@ public class SendMovePosDB : MonoBehaviour
                 case (int)ChapterStep.Chapter2:
                     GameManager.Instance.PlayMoveGuideManager.chapter2MovePos = chapter2;
                     break;
+                case (int)ChapterStep.Chapter3:
+                    GameManager.Instance.PlayMoveGuideManager.chapter3MovePos = chapter3;
+                    break;
+                case (int)ChapterStep.Chapter4:
+                    GameManager.Instance.PlayMoveGuideManager.chapter4MovePos = chapter4;
+                    break;
             }
         }
     }

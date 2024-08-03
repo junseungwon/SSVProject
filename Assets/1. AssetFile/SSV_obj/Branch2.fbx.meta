@@ -3,7 +3,12 @@ guid: 971dbc37c00402347aa13f1dc3445cc8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 3DModel_Retopo
+    second: {fileID: 2100000, guid: d1c06ce701afee24585d6f05eeae5c37, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

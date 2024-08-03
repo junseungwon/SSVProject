@@ -66,16 +66,14 @@ public class Chapter2 : ChapterManager, ChapterInterFace
         for (int i = 0; i < questItems.Length; i++)
         {
             questItems[i].SetActive(result);
-            questItems[i].GetComponent<XRGrabInteractable>().selectEntered.AddListener(quest);
+            questItems[i].GetComponent<XRGrabInteractable>().selectEntered.AddListener(CheckQuest);
         }
     }
 
-    private void quest(SelectEnterEventArgs arg0)
+        //잡은 물체의 이름을 가져와서 퀘스트 조건에 충족하는지 확인하고 확인이 완료되면 다음 단계로 넘어감
+    private void CheckQuest(SelectEnterEventArgs arg0)
     {
-        Debug.Log(gameObject.name);
-        Debug.Log(arg0.interactor.gameObject.GetComponent<CustomDirController>().grabObject.name);
-        //닿은 물체가 아니라 해당되는 물체를 가져오고 싶은데
-        CheckItems(int.Parse(arg0.interactor.gameObject.GetComponent<CustomDirController>().grabObject.name));
+        CheckItems(int.Parse(arg0.interactor.gameObject.GetComponent<CustomDirController>().grabObject.name), CompleteGrabItems);
     }
 
     //(SelectEnterEventArgs arg0) => CheckItems(int.Parse(arg0.interactor.gameObject.name))
@@ -85,36 +83,6 @@ public class Chapter2 : ChapterManager, ChapterInterFace
         for (int i = 0; i < questItems.Length; i++)
         {
             questItems[i].GetComponent<XRGrabInteractable>().selectEntered.RemoveAllListeners();
-        }
-    }
-
-    //아이템들이 퀘스트 아이템인지 확인하고 퀘스트 요구조건을 만족하면 다음 단계로 넘어감
-    private void CheckItems(int num)
-    {
-        Debug.Log("아이템을 잡았습니다");
-        //흡수한 아이템의 코드 번호를 가져옴 
-        //아이템 번호가 필요한 아이템 번호랑 같은지 확인함
-        for (int i = 0; i < 2; i++)
-        {
-            if (questItemDBs[GameManager.Instance.PlayStoryManager.storyStep, i] != null)
-            {
-                //같은 아이템이고 필요 아이템보다 작으면 가지고 있는 아이템 수의 개수를 증가함
-                if (questItemDBs[GameManager.Instance.PlayStoryManager.storyStep, i].codeNaem == num && SameCount(i))
-                {
-
-                    Debug.Log("필요 아이템이라 값을 1 증가 했습니다./");
-                    questItemDBs[GameManager.Instance.PlayStoryManager.storyStep, i].getCnt += 1;
-                    Debug.Log(questItemDBs[GameManager.Instance.PlayStoryManager.storyStep, 0].getCnt);
-                    Debug.Log(questItemDBs[GameManager.Instance.PlayStoryManager.storyStep, 1].getCnt);
-                    GameManager.Instance.PlanNote.ModifyQuset(i, questItemDBs[GameManager.Instance.PlayStoryManager.storyStep, i].getCnt);
-                    break;
-                }
-            }
-        }
-        // 모두 만족하면 다음 단계로 넘어감
-        if (NumberOfRequiredItems())
-        {
-            CompleteGrabItems();
         }
     }
 

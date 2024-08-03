@@ -28,7 +28,7 @@ public class PlayStoryManager : MonoBehaviour
     public void PlayNextChapter()
     {
         //단계 상승
-        chapterStep++;
+        chapterStep =4;
         storyStep = 0;
 
         //plan퀘스트에 추가했던 부분들을 리셋

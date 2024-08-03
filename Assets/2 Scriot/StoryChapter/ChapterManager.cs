@@ -32,9 +32,17 @@ public class ChapterManager : MonoBehaviour
     //퀘스트 추가
     protected void AddQuest()
     {
+        AddMessage();
+        GameManager.Instance.PlanNote.AddQuset();
+    }
+    protected void AddMessage()
+    {
         messageNum++;
         GameManager.Instance.UiManager.ChangeSubTitleMessageText(subtitleMessageText[messageNum]);
-        GameManager.Instance.PlanNote.AddQuset();
+    }
+    protected void ThisMessage()
+    {
+        GameManager.Instance.UiManager.ChangeSubTitleMessageText(subtitleMessageText[messageNum]);
     }
 
     //요구조건이 1개이고 필요 아이템도 1개일 경우 자동으로 필요 정보들을 수정해줌
@@ -66,6 +74,33 @@ public class ChapterManager : MonoBehaviour
             }
         }
         return isTrue;
+    }
+    //아이템들이 퀘스트 아이템인지 확인하고 퀘스트 요구조건을 만족하면 다음 단계로 넘어감
+    protected void CheckItems(int num, Action completeAction)
+    {
+        Debug.Log("아이템을 잡았습니다");
+        //흡수한 아이템의 코드 번호를 가져옴 
+        //아이템 번호가 필요한 아이템 번호랑 같은지 확인함
+        for (int i = 0; i < 2; i++)
+        {
+            if (questItemDBs[GameManager.Instance.PlayStoryManager.storyStep, i] != null)
+            {
+                //같은 아이템이고 필요 아이템보다 작으면 가지고 있는 아이템 수의 개수를 증가함
+                if (questItemDBs[GameManager.Instance.PlayStoryManager.storyStep, i].codeNaem == num && SameCount(i))
+                {
+
+                    Debug.Log("필요 아이템이라 값을 1 증가 했습니다./");
+                    questItemDBs[GameManager.Instance.PlayStoryManager.storyStep, i].getCnt += 1;
+                    GameManager.Instance.PlanNote.ModifyQuset(i, questItemDBs[GameManager.Instance.PlayStoryManager.storyStep, i].getCnt);
+                    break;
+                }
+            }
+        }
+        // 모두 만족하면 다음 단계로 넘어감
+        if (NumberOfRequiredItems())
+        {
+            completeAction.Invoke();
+        }
     }
     protected bool SameCount(int num)
     {

@@ -3,7 +3,17 @@ guid: 3078ea6367b08084289bf8a51c1175b0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bottle
+    second: {fileID: 2100000, guid: 5f5fc54fe50b4c844ba0fb3ed67220e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pebbles
+    second: {fileID: 2100000, guid: cf2fd2c853073604aba85894a3d65e25, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
