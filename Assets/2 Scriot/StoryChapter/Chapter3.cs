@@ -20,7 +20,8 @@ public class Chapter3 : ChapterManager, ChapterInterFace
 
     public void ThisChapterPlay()
     {
-        ReduceHP();
+        GameManager.Instance.PlayStoryManager.PlayNextChapter();
+        //ReduceHP();
     }
     //    3챕터(구하기)
     //  [배고픔 수치와 목마름 수치가 감소하고 있습니다]
@@ -160,7 +161,9 @@ public class Chapter3 : ChapterManager, ChapterInterFace
     private void CompleteEatFish()
     {
         Debug.Log("해당 챕터가 완료됨");
-        AddMessage();
+        //AddMessage();
+        GameManager.Instance.PlanNote.CompleteQuest();
+        StartCoroutine(CountDown(3.0f, GameManager.Instance.PlayStoryManager.PlayNextChapter));
     }
 
     private enum QuestStepEnum

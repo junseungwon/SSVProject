@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1844831508407517813}
-  - component: {fileID: 7590010604830633060}
   - component: {fileID: 4535559282579415330}
   - component: {fileID: 6330152208548082422}
   - component: {fileID: 1635807029065644054}
+  - component: {fileID: -13214193185088492}
   m_Layer: 0
   m_Name: 120
   m_TagString: Item
@@ -36,27 +36,6 @@ Transform:
   - {fileID: 5198275968977644174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7590010604830633060
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7124791545901019417}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4535559282579415330
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103,6 +82,7 @@ MonoBehaviour:
   itemdb: {fileID: 0}
   itemBoxParentNum: -1
   makeBoxParentNum: -1
+  anim: {fileID: 0}
   objScale: {x: 0, y: 0, z: 0}
 --- !u!114 &1635807029065644054
 MonoBehaviour:
@@ -251,11 +231,32 @@ MonoBehaviour:
   m_ThrowVelocityScale: 1.5
   m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
-  m_RetainTransformParent: 1
+  m_RetainTransformParent: 0
   m_AttachPointCompatibilityMode: 0
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!65 &-13214193185088492
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7124791545901019417}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.28865612, y: 1.6719732, z: 0.20694748}
+  m_Center: {x: 0.006016959, y: 0.0068859016, z: -0.09800561}
 --- !u!1 &8714994730572370076
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,14 +281,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8714994730572370076}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.214, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.835, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9085235704978794494}
   m_Father: {fileID: 1844831508407517813}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1001 &8763869366787342357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -310,19 +311,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 971dbc37c00402347aa13f1dc3445cc8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 971dbc37c00402347aa13f1dc3445cc8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 971dbc37c00402347aa13f1dc3445cc8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 971dbc37c00402347aa13f1dc3445cc8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 971dbc37c00402347aa13f1dc3445cc8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -338,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 971dbc37c00402347aa13f1dc3445cc8, type: 3}
       propertyPath: m_Name
-      value: Branch2
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -363,7 +364,7 @@ Animator:
   m_GameObject: {fileID: 8457457805191068996}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8bae9bb4f84d2c840aa9694726e32abc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4dbf641f20a81174a93724c8c41ab86f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

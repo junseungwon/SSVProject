@@ -46,8 +46,9 @@ public class Chapter1 : ChapterManager, ChapterInterFace
     public void ThisChapterPlay()
     {
         Debug.Log("챕터1단계 시작");
-        GameManager.Instance.PlayStoryManager.PlayNextChapter();
-        //PlayAction();
+         GameManager.Instance.PlayStoryManager.PlayNextChapter();
+         //PlayAction();
+        //GameManager.Instance.PlanNote.ResetTextSetting();
 
     }
 
@@ -176,7 +177,7 @@ public class Chapter1 : ChapterManager, ChapterInterFace
     private void ProduceHouseFromTable()
     {
         
-        Debug.Log(GameManager.Instance.MakeItemBox.completeItemCode);
+        Debug.Log(GameManager.Instance.MakeItemBox.completeItemCode+"해당코드입ㄴ다");
         //꺼낸 아이템이 움막인지 확인
         if (GameManager.Instance.MakeItemBox.completeItemCode == (int)ItemName.움막)
         {

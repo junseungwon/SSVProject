@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -7,12 +6,14 @@ public class ItemGrabInteractive : GrabInteractive_JSW
     public ItemDB itemdb;
     public int itemBoxParentNum = -1;
     public int makeBoxParentNum = -1;
+    public Animator anim = null;
+
     public Vector3 objScale = Vector3.zero;
     private Rigidbody rb = null;
     // Start is called before the first frame update
     private void Awake()
     {
-        
+        anim = GetComponentInChildren<Animator>();
         objScale = transform.localScale;
     }
     void Start()
@@ -29,8 +30,24 @@ public class ItemGrabInteractive : GrabInteractive_JSW
 
     }
 
+    public void AnimPlay(bool isTrue)
+    {
+        if (anim != null)
+        {
+            anim.SetBool("Play", isTrue);
 
-
+        }
+    }
+    public void TagIsAbSorb()
+    {
+        this.tag = "IsAbsorbItem";
+        anim.tag = "IsAbsorbItem";
+    }
+    public void TagItem()
+    {
+        this.tag = "Item";
+        anim.tag = "Item";
+    }
     /// <summary>
     /// 플레이어가 itembox에 닿고 플레이어가 잡은 상태인 경우
     ///->안에 물건이 있어?
@@ -46,7 +63,7 @@ public class ItemGrabInteractive : GrabInteractive_JSW
         {
             GameManager.Instance.ItemBox.GetOut(itemBoxParentNum, this.gameObject, objScale);
         }
-        if(makeBoxParentNum > -1)
+        if (makeBoxParentNum > -1)
         {
             GameManager.Instance.MakeItemBox.GetOut(makeBoxParentNum, this.gameObject, objScale);
         }
@@ -59,12 +76,12 @@ public class ItemGrabInteractive : GrabInteractive_JSW
             rb.useGravity = true;
             //해당되는 아이템 박스의 ui부분에 
             GameManager.Instance.ItemBox.ChangeItemCountTextUI(itemBoxParentNum);
-           
+
             transform.parent = null;
             transform.localScale = objScale;
             itemBoxParentNum = -1;
         }
-        if(makeBoxParentNum > -1)
+        if (makeBoxParentNum > -1)
         {
             rb.isKinematic = false;
             rb.useGravity = true;

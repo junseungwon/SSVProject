@@ -81,6 +81,10 @@ MonoBehaviour:
     Name: "\uBB3C\uACE0\uAE30"
     Type: Consumable
     Inform: "\uBB3C\uACE0\uAE30\uC785\uB2C8\uB2E4"
+  - CodeName: 260
+    Name: "\uD770\uB3CC"
+    Type: Consumable
+    Inform: "\uD770\uB3CC\uC785\uB2C8\uB2E4."
   ItemComebine:
   - Item1: 110
     Name1: "\uD1B5\uB098\uBB34"

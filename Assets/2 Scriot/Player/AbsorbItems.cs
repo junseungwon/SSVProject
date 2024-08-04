@@ -12,7 +12,7 @@ public class AbsorbItems : MonoBehaviour
         //아이템을 잡고 있으면 해당 태그를 GrabItems로 바꿈
         if (other.tag == "IsAbsorbItem")
         {
-            Debug.Log("아이템을 흡수했습니다.");
+            Debug.Log(other.name+ " 아이템을 흡수했습니다.");
             CheckInvenEmptyPlace(int.Parse(other.name), other.gameObject);
         }
     }

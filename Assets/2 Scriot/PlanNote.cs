@@ -15,8 +15,6 @@ public class PlanNote : MonoBehaviour
     public string[] planNoteL;
 
     //plan의 단계와 게임안에 단계
- 
-
     [SerializeField]
     private GameObject planTextUi = null;
     private void Awake()
@@ -122,12 +120,15 @@ public class PlanNote : MonoBehaviour
     public void ResetTextSetting()
     {
         string[] textArray = CheckPlanNoteTextArray();
-        for (int i = 0; i < textArray.Length; i++)
+        Debug.Log(planTextUi.transform.childCount);
+        for (int i = 0; i < 5; i++)
         {
+            Debug.Log(i);
             GameObject childObj = planTextUi.transform.GetChild(i).gameObject;
-            childObj.SetActive(false);
+            //Debug.Log(childObj.name);
+            planTextUi.transform.GetChild(0).gameObject.SetActive(false);
             childObj.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Normal;
-            childObj.GetComponent<TextMeshProUGUI>().text = textArray[i];
+            childObj.GetComponent<TextMeshProUGUI>().text = "";
         }
     }
 }

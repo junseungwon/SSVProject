@@ -1,21 +1,16 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Windows;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class Chapter0 : ChapterManager, ChapterInterFace
 {
-
+    public XRSocketInteractor socket = null;
     //현재 챕터에 시작
     public void ThisChapterPlay()
     {
         HowToPlay();
-       IFPutTube();
+        IFPutTube();
         //GameManager.Instance.PlayerController.leftDirController.selectEntered.AddListener(LeftGrabRockItem);
     }
 
@@ -36,9 +31,13 @@ public class Chapter0 : ChapterManager, ChapterInterFace
     //튜브를 소켓(특정 장소)에 물건을 배치하면 발동함
     public void IFPutTube()
     {
+       // string name= socket.selectTarget.gameObject.name;
+       // if (name == "Tube")
+        {
+            GameManager.Instance.UiManager.PlayerFadeInOut(0, 3, GameManager.Instance.PlayStoryManager.MoveNextMainScene);
+            StartCoroutine(CorutineIsNextScene());
+        }
         //FadeOut이 실행되고 다음 메인씬으로 넘어간다.
-        GameManager.Instance.UiManager.PlayerFadeInOut(0, 3, GameManager.Instance.PlayStoryManager.MoveNextMainScene);
-        StartCoroutine(CorutineIsNextScene());
     }
     private IEnumerator CorutineIsNextScene()
     {
@@ -48,9 +47,9 @@ public class Chapter0 : ChapterManager, ChapterInterFace
             currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             yield return new WaitForSeconds(0.1f);
         }
-        GameManager.Instance.PlayMoveGuideManager.GuideNextMovingArea(0,BallNearPlayer) ;
+        GameManager.Instance.PlayMoveGuideManager.GuideNextMovingArea(0, BallNearPlayer);
     }
-    
+
     //배구공이 플레이어와 가까이 갔을 때
     public void BallNearPlayer()
     {
@@ -60,7 +59,5 @@ public class Chapter0 : ChapterManager, ChapterInterFace
         Debug.Log("plan노트를 획득하셨습니다.");
         GameManager.Instance.PlanNote.gameObject.SetActive(true);
         GameManager.Instance.PlayStoryManager.PlayNextChapter();
-        //다음챕터로 변경
-        //GameManager.Instance.PlayStoryManager.PlayNextChapter();
     }
 }

@@ -6,15 +6,24 @@ public class Fish : MonoBehaviour
     public int itemCode = 0;
     public int state = 0;
     //물체랑 접촉했을 때 아이템이 소모형 아이템이면 흡수 아니면 흡수안함
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         //해당 아이템이 산딸기나 오디일 경우 섭취 가능하게
-        if(other.tag == "Item")
+        if (collision.gameObject.tag == "Item")
         {
-        SwichFishState(int.Parse(other.gameObject.name), other.gameObject);
+            SwichFishState(int.Parse(collision.gameObject.name), collision.gameObject);
 
         }
     }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    //해당 아이템이 산딸기나 오디일 경우 섭취 가능하게
+    //    if(other.tag == "Item")
+    //    {
+    //    SwichFishState(int.Parse(other.gameObject.name), other.gameObject);
+
+    //    }
+    //}
     //물고기를 나무창으로 죽이고 난 후 잡을 수 있게 만듬
     //나무가지로 꽂음 
     //꼬치 물고기가 됨

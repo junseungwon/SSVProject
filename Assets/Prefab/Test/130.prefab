@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 730490817884902913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -136.6, y: -43.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41,10 +41,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1844831508407517813}
-  - component: {fileID: 7590010604830633060}
   - component: {fileID: 4535559282579415330}
   - component: {fileID: 6330152208548082422}
   - component: {fileID: 1635807029065644054}
+  - component: {fileID: 292514631850622585}
   m_Layer: 0
   m_Name: 130
   m_TagString: Item
@@ -68,27 +68,6 @@ Transform:
   - {fileID: 9037708223897238431}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7590010604830633060
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7124791545901019417}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4535559282579415330
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,6 +114,7 @@ MonoBehaviour:
   itemdb: {fileID: 0}
   itemBoxParentNum: -1
   makeBoxParentNum: -1
+  anim: {fileID: 0}
   objScale: {x: 0, y: 0, z: 0}
 --- !u!114 &1635807029065644054
 MonoBehaviour:
@@ -283,11 +263,32 @@ MonoBehaviour:
   m_ThrowVelocityScale: 1.5
   m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
-  m_RetainTransformParent: 1
+  m_RetainTransformParent: 0
   m_AttachPointCompatibilityMode: 0
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!65 &292514631850622585
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7124791545901019417}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.4982838, y: 0.104344495, z: 0.26959732}
+  m_Center: {x: 0.25085822, y: 0.07809342, z: -0.011022325}
 --- !u!1001 &9209816268094028253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -350,7 +351,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: eee2522581ea6c447b68fad60d99dc8c, type: 2}
     - target: {fileID: 919132149155446097, guid: c8cd04dfc2fb5404cbb86bb0e551da6e, type: 3}
       propertyPath: m_Name
-      value: uploads_files_748162_FBX
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8cd04dfc2fb5404cbb86bb0e551da6e, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -404,7 +409,7 @@ Animator:
   m_GameObject: {fileID: 8290773731418473612}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8bae9bb4f84d2c840aa9694726e32abc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -26,7 +26,8 @@ public class Chapter2 : ChapterManager, ChapterInterFace
     //아이템을 모두 주우으면 해당 챕터가 끝남
     public void ThisChapterPlay()
     {
-        MoveArea();
+        GameManager.Instance.PlayStoryManager.PlayNextChapter();
+      //  MoveArea();
     }
 
 
@@ -95,7 +96,7 @@ public class Chapter2 : ChapterManager, ChapterInterFace
         //기존 퀘스트 완료표시
         GameManager.Instance.PlanNote.CompleteQuest();
         //3초 후에 새로운 챕터로 이동함
-        //StartCoroutine(CountDown(3.0f, GameManager.Instance.PlayStoryManager.PlayNextChapter));
+        StartCoroutine(CountDown(3.0f, GameManager.Instance.PlayStoryManager.PlayNextChapter));
     }
 
     //퀘스트 아이템 enum

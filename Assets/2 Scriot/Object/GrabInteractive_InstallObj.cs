@@ -20,7 +20,7 @@ public class GrabInteractive_InstallObj : MonoBehaviour
         grabbable.selectEntered.AddListener(VirtualInstallation);
         grabbable.selectExited.AddListener(SelectExitInterActive);
         corutine = TransrateInstanceObj();
-        transform.GetChild(0).GetComponent<Animator>().SetBool("Play", true);
+        //transform.GetChild(0).GetComponent<Animator>().SetBool("Play", true);
     }
 
     private void SelectExitInterActive(SelectExitEventArgs arg0)
@@ -104,7 +104,7 @@ public class GrabInteractive_InstallObj : MonoBehaviour
             grabbable.trackRotation = false;
             transform.position = virtualInstallObj.transform.position;
             transform.rotation = Quaternion.identity;
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Play", false);
+            GetComponent<ItemGrabInteractive>().AnimPlay(false);
             Debug.Log("설치가 되었습니다.");
         }
         virtualInstallObj.SetActive(false);

@@ -12,6 +12,7 @@ TagManager:
   - InstallObject
   - Item
   - IsAbsorbItem
+  - Test
   layers:
   - Default
   - TransparentFX

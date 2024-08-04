@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GetItem : MonoBehaviour
 {
+    public XRSocketInteractor socket = null;
+    public GameObject obj = null;
     private void OnTriggerStay(Collider other)
     {
+        //플레이어 손으로 아이템을 넣었을 경우
         if (other.GetComponent<CustomDirController>() != null)
         {
             //해당되는 컨트롤러가 잡기 상태가 아닌경우
@@ -28,6 +33,9 @@ public class GetItem : MonoBehaviour
             }
         }
     }
+
+
+    
 }
 
 //if (other.GetComponent<CustomDirController>() != null)

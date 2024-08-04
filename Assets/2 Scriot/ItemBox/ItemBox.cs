@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class ItemBox : MonoBehaviour
 {
@@ -7,10 +8,14 @@ public class ItemBox : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI[] textUI = new TextMeshProUGUI[9];
     private GameObject playerAbsorbColider = null;
+
+    public GameObject obj;
     private void Awake()
     {
         GameManager.Instance.ItemBox = this;
         //GameManager.Instance.c
+       // GetTopParent(obj.transform);
+        //Debug.Log(GetTopParent(obj.transform).name);
 
     }
     void Start()
@@ -59,9 +64,11 @@ public class ItemBox : MonoBehaviour
 
         }
     }
+
     //아이템에 변경사항을 수정함
     private void ModifyItemData(int parentIndex, GameObject item)
     {
+        //아이템에 스크립트가 없는 경우 다시 찾아서 return
         item.GetComponent<ItemGrabInteractive>().itemBoxParentNum = parentIndex;
         item.GetComponent<Rigidbody>().isKinematic = true;
         ChangeItemCountTextUI(parentIndex);

@@ -7,7 +7,7 @@ public class Tree : DropItem
     private int hp = 100;
     private void Start()
     {
-       // DeadTree();
+      //DeadTree();
     }
     private void OnCollisionEnter(Collision collision)
     {
