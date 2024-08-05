@@ -6,11 +6,12 @@ public class DropItem : MonoBehaviour
     public DropItemsDB dropItemsDB;
     private void Start()
     {
-        DropItems();
+       // DropItems();
     }
     public void DropItems()
     {
-        Vector3 v3 = new Vector3(transform.position.x, 0.1f, transform.position.z);
+        Debug.Log(transform.position);
+        Vector3 v3 = new Vector3(transform.position.x, transform.position.y+0.5f, transform.position.z);
         //Debug.Log(dropItemsDB.ItemsCode[0]);
         //배열에 저장된 아이템들을 for문을 통해서 반복 호출 해당되는 아이템들을 itemTable에서 가져와 생성
         for (int i = 0; i < dropItemsDB.ItemsCode.Length; i++)
@@ -19,11 +20,13 @@ public class DropItem : MonoBehaviour
             {
                 float numX = (Random.Range(0, 1) == 1) ? 0.05f : -0.05f;
                 float numZ = (Random.Range(0, 1) == 1) ? 0.05f : -0.05f;
-                v3.x += numX;
+               v3.x += numX;
                 v3.z += numZ;
 
                 //아이템 생성
-                GameObject obj = Instantiate(GameManager.Instance.itemTable.GetDBGameObject(dropItemsDB.ItemsCode[i]), v3, Quaternion.identity);
+                GameObject obj = Instantiate(GameManager.Instance.itemTable.GetDBGameObject(dropItemsDB.ItemsCode[i]));
+                obj.transform.position = v3;
+                obj.transform.rotation = Quaternion.identity;
                 obj.GetComponent<ItemGrabInteractive>().TagIsAbSorb();
                 //아이템의 애니메이션을 실행함
                 obj.GetComponent<ItemGrabInteractive>().AnimPlay(true);

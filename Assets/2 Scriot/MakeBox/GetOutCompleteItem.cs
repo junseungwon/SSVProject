@@ -43,6 +43,7 @@ public class GetOutCompleteItem : MonoBehaviour
                 }
                 //부모 초기화
                 Debug.Log(playerGrabObj.name);
+                playerGrabObj.tag = "Item";
                 playerGrabObj.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                 Debug.Log(playerGrabObj.transform.localScale);
                 GameManager.Instance.MakeItemBox.RemoveItems();

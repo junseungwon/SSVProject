@@ -1128,6 +1128,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "BButton",
+                    "type": "Button",
+                    "id": "60a2d8b5-9a5b-4eeb-868a-26454bd5d5d0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1348,6 +1357,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a333e6b1-c72d-437f-8562-53d28196635a",
+                    "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "BButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

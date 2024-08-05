@@ -123,7 +123,7 @@ public class PlanNote : MonoBehaviour
         Debug.Log(planTextUi.transform.childCount);
         for (int i = 0; i < 5; i++)
         {
-            Debug.Log(i);
+            //Debug.Log(i);
             GameObject childObj = planTextUi.transform.GetChild(i).gameObject;
             //Debug.Log(childObj.name);
             planTextUi.transform.GetChild(0).gameObject.SetActive(false);

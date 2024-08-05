@@ -13,7 +13,9 @@ public class Chapter4 : ChapterManager, ChapterInterFace
     private GameObject sosSign = null;
 
     [SerializeField]
-    private GameObject installArea = null;
+    private GameObject questObject = null;
+    [SerializeField]
+    private GameObject questInstallSocket = null;
     private void Awake()
     {
         GameManager.Instance.PlayStoryManager.chapterManager[4] = this.gameObject;
@@ -105,15 +107,25 @@ public class Chapter4 : ChapterManager, ChapterInterFace
         //설치 공간을 부여할건데 거기에 colider가 맞닿으면 설치 완료 표시를 하고 게임 종료 멘트 부여
         //설치 공간을 활성화
         //설치 공간에 이벤트 부여
-        
+        questInstallSocket.SetActive(true);
+        questInstallSocket.GetComponent<InstallArea>().OnSetting(CheckQuestItem);
     }
-    private void CompleteInstallFire()
+    private void CheckQuestItem()
     {
-        //닿은 물체가 모닥불이고 설치가 완료된 것이면 종료
-         
+        //충돌 오브젝트가 모닥불일 경우
+        if(questInstallSocket.GetComponent<InstallArea>().colliderObject.name == "160")
+        {
+            questInstallSocket.GetComponent<InstallArea>().colliderObject.GetComponent<GrabInteractive_InstallObj>().InstallValue();
+            Debug.Log("설치 완료");
+            CompleteGame();
+        }
     }
     private void CompleteGame()
     {
+        Debug.Log("엔딩입니다.");
+        //퀘스트 완료
+        GameManager.Instance.PlanNote.CompleteQuest();
+        AddMessage();
     }
     private enum QuestStepEnum
     {

@@ -20,8 +20,8 @@ public class Chapter3 : ChapterManager, ChapterInterFace
 
     public void ThisChapterPlay()
     {
-        GameManager.Instance.PlayStoryManager.PlayNextChapter();
-        //ReduceHP();
+        //GameManager.Instance.PlayStoryManager.PlayNextChapter();
+        ReduceHP();
     }
     //    3챕터(구하기)
     //  [배고픔 수치와 목마름 수치가 감소하고 있습니다]

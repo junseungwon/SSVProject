@@ -26,8 +26,8 @@ public class Chapter2 : ChapterManager, ChapterInterFace
     //아이템을 모두 주우으면 해당 챕터가 끝남
     public void ThisChapterPlay()
     {
-        GameManager.Instance.PlayStoryManager.PlayNextChapter();
-      //  MoveArea();
+        //GameManager.Instance.PlayStoryManager.PlayNextChapter();
+      MoveArea();
     }
 
 

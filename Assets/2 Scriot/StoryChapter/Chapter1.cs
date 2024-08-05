@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -46,8 +47,8 @@ public class Chapter1 : ChapterManager, ChapterInterFace
     public void ThisChapterPlay()
     {
         Debug.Log("챕터1단계 시작");
-         GameManager.Instance.PlayStoryManager.PlayNextChapter();
-         //PlayAction();
+        //GameManager.Instance.PlayStoryManager.PlayNextChapter();
+        PlayAction();
         //GameManager.Instance.PlanNote.ResetTextSetting();
 
     }
@@ -64,6 +65,36 @@ public class Chapter1 : ChapterManager, ChapterInterFace
         //돌을 주웠는지 확인하기 위한 코드
         IFGrabRock();
 
+        //제작대 활성화
+        StartCoroutine(CorutineMakeItemUIActive());
+    }
+   
+    //제작대 활성화
+    private IEnumerator CorutineMakeItemUIActive()
+    {
+        int count = 0;
+        GameManager.Instance.MakeItemBox.gameObject.SetActive(false);
+        while (true)
+        {
+            float num = GameManager.Instance.PlayerController.inputActions.actionMaps[4].actions[12].ReadValue<float>();
+            if (num > 0.8)
+            {
+                if (count != 1)
+                {
+
+                    GameManager.Instance.MakeItemBox.gameObject.SetActive(true);
+                    GameManager.Instance.MakeItemBox.gameObject.transform.position = GameManager.Instance.PlayerController.makeItemsPos.position;
+                    count++;
+                }
+                else
+                {
+                    GameManager.Instance.MakeItemBox.gameObject.SetActive(false);
+                    count = 0;
+                }
+            }
+
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     private void IFGrabRock()
@@ -176,8 +207,8 @@ public class Chapter1 : ChapterManager, ChapterInterFace
     }
     private void ProduceHouseFromTable()
     {
-        
-        Debug.Log(GameManager.Instance.MakeItemBox.completeItemCode+"해당코드입ㄴ다");
+
+        Debug.Log(GameManager.Instance.MakeItemBox.completeItemCode + "해당코드입ㄴ다");
         //꺼낸 아이템이 움막인지 확인
         if (GameManager.Instance.MakeItemBox.completeItemCode == (int)ItemName.움막)
         {

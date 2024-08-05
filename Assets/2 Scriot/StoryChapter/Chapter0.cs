@@ -10,7 +10,7 @@ public class Chapter0 : ChapterManager, ChapterInterFace
     public void ThisChapterPlay()
     {
         HowToPlay();
-        IFPutTube();
+      IFPutTube();
         //GameManager.Instance.PlayerController.leftDirController.selectEntered.AddListener(LeftGrabRockItem);
     }
 
@@ -47,6 +47,7 @@ public class Chapter0 : ChapterManager, ChapterInterFace
             currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             yield return new WaitForSeconds(0.1f);
         }
+        GameManager.Instance.player.transform.position = new Vector3(335.0f, 96, 2136);
         GameManager.Instance.PlayMoveGuideManager.GuideNextMovingArea(0, BallNearPlayer);
     }
 

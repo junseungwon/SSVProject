@@ -35,6 +35,7 @@ public class GrabInteractive_InstallObj : MonoBehaviour
         if (virtualInstallObj == null)
         {
             virtualInstallObj = Instantiate(this.gameObject);
+            virtualInstallObj.name = this.gameObject.name;
         }
         else
         {
@@ -72,12 +73,7 @@ public class GrabInteractive_InstallObj : MonoBehaviour
     //설치버튼 a버튼 클릭 여부 검사
     private void InstallObject()
     {
-        //inputActions.actionMaps[5].actions[8].ReadValue<Vector2>().y >= 0.8)
         float selectNum = GameManager.Instance.PlayerController.inputActions.actionMaps[4].actions[11].ReadValue<float>();
-        /*InputAction action =  GameManager.Instance.PlayerController.inputActions.actionMaps[4].actions[11];
-        action.Enable();
-        action.performed += OnSubmit;*/
-        //Debug.Log(selectNum);
         //버튼 눌렸으면 물체를 설치함
         if (selectNum > 0.8f)
         {
@@ -90,7 +86,19 @@ public class GrabInteractive_InstallObj : MonoBehaviour
         }
     }
 
-
+    public void InstallValue()
+    {
+        isInstall = true;
+        isGrab = false;
+        grabbable.movementType = XRBaseInteractable.MovementType.Kinematic;
+        grabbable.trackPosition = false;
+        grabbable.trackRotation = false;
+        transform.position = virtualInstallObj.transform.position;
+        transform.rotation = Quaternion.identity;
+        GetComponent<ItemGrabInteractive>().AnimPlay(false);
+        virtualInstallObj.SetActive(false);
+        Debug.Log("설치가 되었습니다.");
+    }
     //설치 아이템 설치
     private void SetItem()
     {

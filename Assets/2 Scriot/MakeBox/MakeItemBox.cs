@@ -21,8 +21,10 @@ public class MakeItemBox : MonoBehaviour
     public GetOutCompleteItem getOutCompleteItem = null;
     private void Awake()
     {
+        Debug.Log("awake½ÇÇà");
         GameManager.Instance.MakeItemBox = this;
         getOutCompleteItem = completeItemParent.transform.GetChild(1).GetComponent<GetOutCompleteItem>();
+       // gameObject.SetActive(false);
     }
     private void Start()
     {

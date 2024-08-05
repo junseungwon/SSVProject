@@ -19,10 +19,13 @@ public class PlayerController : MonoBehaviour
     public CustomDirController leftDirController;
     public CustomDirController rightDirController;
 
+    public Transform makeItemsPos = null;
+    private XRInteractorLineVisual teleportLine = null;
 
     private bool isTeleport = false;
     private void Awake()
     {
+        teleportLine = teleportRayController.GetComponent<XRInteractorLineVisual>();
         GameManager.Instance.PlayerController = this;
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(teleportRayController.GetComponent<XRInteractorLineVisual>().reticle.gameObject);
@@ -68,6 +71,7 @@ public class PlayerController : MonoBehaviour
         if (inputActions.actionMaps[5].actions[8].ReadValue<Vector2>().y >= 0.8)
         {
             teleportRayController.SetActive(true);
+            teleportLine.reticle.SetActive(true);
             isTeleport = true;
         }
         else
@@ -75,7 +79,7 @@ public class PlayerController : MonoBehaviour
             if(isTeleport == true)
             {
 
-                transform.position = teleportRayController.GetComponent<XRInteractorLineVisual>().reticle.transform.position;
+                transform.position = teleportLine.reticle.transform.position;
                 isTeleport = false;
             }
             teleportRayController.SetActive(false);
