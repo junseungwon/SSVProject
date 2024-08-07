@@ -11,11 +11,17 @@ public class Tree : DropItem
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
         if(collision.gameObject.name == "170"|| collision.gameObject.name == "260")
         {
             DeadTree();
-           // hp -= 10;
-            //if (hp<=0) DeadTree();
+        }
+        if(collision.gameObject.tag == "LHand"|| collision.gameObject.tag == "RHand")
+        {
+            if (collision.gameObject.GetComponent<CustomDirController>().selectTarget.gameObject != null)
+            {
+                DeadTree();
+            }
         }
     }
     private void DeadTree()

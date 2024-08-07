@@ -6,11 +6,15 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Chapter0 : ChapterManager, ChapterInterFace
 {
     public XRSocketInteractor socket = null;
+
+    [SerializeField]
+    private GameObject putGuide = null;
     //현재 챕터에 시작
     public void ThisChapterPlay()
     {
         HowToPlay();
-      IFPutTube();
+        ChangeTitle();
+        //IFPutTube();
         //GameManager.Instance.PlayerController.leftDirController.selectEntered.AddListener(LeftGrabRockItem);
     }
 
@@ -26,7 +30,14 @@ public class Chapter0 : ChapterManager, ChapterInterFace
     //사용자에게 사용법을 알려준다.
     private void HowToPlay()
     {
+        ThisMessage();
+       GameManager.Instance.PlayMoveGuideManager.GuideNextMovingArea(0,PutTube);
         Debug.Log("사용자에게 현재 단계를 설명해줌");
+    }
+    private void PutTube()
+    {
+        AddMessage();
+        putGuide.SetActive(true);
     }
     //튜브를 소켓(특정 장소)에 물건을 배치하면 발동함
     public void IFPutTube()
@@ -47,8 +58,9 @@ public class Chapter0 : ChapterManager, ChapterInterFace
             currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             yield return new WaitForSeconds(0.1f);
         }
-        GameManager.Instance.player.transform.position = new Vector3(335.0f, 96, 2136);
-        GameManager.Instance.PlayMoveGuideManager.GuideNextMovingArea(0, BallNearPlayer);
+        GameManager.Instance.player.transform.position = new Vector3(324.28f, 34.1f, 796f);
+        //BallNearPlayer();
+        GameManager.Instance.PlayMoveGuideManager.GuideNextMovingArea(1, BallNearPlayer);
     }
 
     //배구공이 플레이어와 가까이 갔을 때

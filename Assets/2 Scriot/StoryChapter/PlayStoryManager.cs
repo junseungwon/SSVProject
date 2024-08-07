@@ -25,12 +25,13 @@ public class PlayStoryManager : MonoBehaviour
     {
         PlayThisChapter();
     }
+
     public void PlayNextChapter()
     {
         //단계 상승
         chapterStep++;
         storyStep = 0;
-
+        Debug.Log(chapterStep + " " + storyStep);
         //plan퀘스트에 추가했던 부분들을 리셋
         GameManager.Instance.PlanNote.ResetTextSetting();
 

@@ -10,17 +10,16 @@ public class ItemBox : MonoBehaviour
     private GameObject playerAbsorbColider = null;
 
     public GameObject obj;
+
+    public GameObject ItemTableParent = null;
     private void Awake()
     {
         GameManager.Instance.ItemBox = this;
-        //GameManager.Instance.c
-       // GetTopParent(obj.transform);
-        //Debug.Log(GetTopParent(obj.transform).name);
-
     }
     void Start()
     {
         ItemBoxSetting();
+        gameObject.SetActive(false);
     }
     //아이템 박스 세팅
     private void ItemBoxSetting()
@@ -44,7 +43,6 @@ public class ItemBox : MonoBehaviour
             int itemCount = itemBoxs[num].itemCount + 1;
             itemBoxs[num] = new ItemBoxData(num, code, itemCount);
             StoreItem(num, obj);
-            Debug.Log(itemCount);
             Debug.Log("아이템이 추가되서 현재 아이템의 코드는 " + itemBoxs[num].code + " 아이템 수량은 " + itemBoxs[num].itemCount);
             ModifyItemData(num, obj);
         }
@@ -112,8 +110,8 @@ public class ItemBox : MonoBehaviour
     {
         //num에 마지막위치로 변경
         //505050 37.6
-        Debug.Log("추가완료");
-        obj.transform.parent = transform.GetChild(num);
+        //Debug.Log(transform.GetChild(num).name);
+        obj.transform.parent = ItemTableParent.transform.GetChild(num);
         obj.transform.localPosition = new Vector3(0, 0, 39.4f);
         obj.transform.rotation = Quaternion.identity;
         obj.transform.localScale = new Vector3(50, 50, 50);

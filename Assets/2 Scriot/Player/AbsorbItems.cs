@@ -5,6 +5,7 @@ public class AbsorbItems : MonoBehaviour
 {
     public GetAction GetAction = null;
     public int itemCode = 0;
+    private int count = 0;
     //물체랑 접촉했을 때 아이템이 소모형 아이템이면 흡수 아니면 흡수안함
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +13,8 @@ public class AbsorbItems : MonoBehaviour
         //아이템을 잡고 있으면 해당 태그를 GrabItems로 바꿈
         if (other.tag == "IsAbsorbItem")
         {
+            count++;
+            Debug.Log(count);
             Debug.Log(other.name+ " 아이템을 흡수했습니다.");
             CheckInvenEmptyPlace(int.Parse(other.name), other.gameObject);
         }

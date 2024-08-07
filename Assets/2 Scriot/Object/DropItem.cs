@@ -10,7 +10,7 @@ public class DropItem : MonoBehaviour
     }
     public void DropItems()
     {
-        Debug.Log(transform.position);
+
         Vector3 v3 = new Vector3(transform.position.x, transform.position.y+0.5f, transform.position.z);
         //Debug.Log(dropItemsDB.ItemsCode[0]);
         //배열에 저장된 아이템들을 for문을 통해서 반복 호출 해당되는 아이템들을 itemTable에서 가져와 생성

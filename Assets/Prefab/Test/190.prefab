@@ -116,6 +116,7 @@ MonoBehaviour:
   itemBoxParentNum: -1
   makeBoxParentNum: -1
   anim: {fileID: 0}
+  isAnim: 1
   objScale: {x: 0, y: 0, z: 0}
 --- !u!114 &1635807029065644054
 MonoBehaviour:
@@ -240,7 +241,7 @@ MonoBehaviour:
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
-  m_TrackScale: 1
+  m_TrackScale: 0
   m_SmoothScale: 0
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
@@ -281,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d618a0327c23fd439807c66f6f3625f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 6429609079495098869, guid: f7ee57bc71aea7d46b02d2d51fe8b59e, type: 3}
   objHeight: 0.07
 --- !u!65 &9098465876672920644
 BoxCollider:
@@ -313,15 +315,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f2b537baf1e60964b916ff8f65379d82, type: 3}
       propertyPath: m_LocalScale.x
-      value: 70
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b537baf1e60964b916ff8f65379d82, type: 3}
       propertyPath: m_LocalScale.y
-      value: 70
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b537baf1e60964b916ff8f65379d82, type: 3}
       propertyPath: m_LocalScale.z
-      value: 70
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f2b537baf1e60964b916ff8f65379d82, type: 3}
       propertyPath: m_LocalPosition.x

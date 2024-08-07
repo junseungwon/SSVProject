@@ -22,6 +22,7 @@ public class Chapter3 : ChapterManager, ChapterInterFace
     {
         //GameManager.Instance.PlayStoryManager.PlayNextChapter();
         ReduceHP();
+        ChangeTitle();
     }
     //    3챕터(구하기)
     //  [배고픔 수치와 목마름 수치가 감소하고 있습니다]
@@ -34,6 +35,8 @@ public class Chapter3 : ChapterManager, ChapterInterFace
     //    [잡은 물고기를 모닥불에 구워서 먹으세요]
     //     모닥불에 물고기 0/2개를 구워서 먹으세요
     //     완료되면 책갈비 A가 사라짐
+
+
     protected override void ListSetting()
     {
         actions = new List<Action>()
@@ -160,6 +163,8 @@ public class Chapter3 : ChapterManager, ChapterInterFace
     }
     private void CompleteEatFish()
     {
+        playerMouth.GetAction = null;
+        Debug.Log(GameManager.Instance.PlayStoryManager.chapterStep);
         Debug.Log("해당 챕터가 완료됨");
         //AddMessage();
         GameManager.Instance.PlanNote.CompleteQuest();

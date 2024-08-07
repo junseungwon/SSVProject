@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class Chapter1 : ChapterManager, ChapterInterFace
@@ -13,6 +14,7 @@ public class Chapter1 : ChapterManager, ChapterInterFace
     // Start is called before the first frame update
     void Start()
     {
+
         ListSetting();
         QuestItemDBSetting();
     }
@@ -50,7 +52,7 @@ public class Chapter1 : ChapterManager, ChapterInterFace
         //GameManager.Instance.PlayStoryManager.PlayNextChapter();
         PlayAction();
         //GameManager.Instance.PlanNote.ResetTextSetting();
-
+        ChangeTitle();
     }
 
     //돌을 주우라고 지시함
@@ -176,6 +178,7 @@ public class Chapter1 : ChapterManager, ChapterInterFace
         AddQuest();
         Debug.Log("인벤토리 만들기");
         //완성 인벤토리를 꺼냈을 때 바구니 제작 퀘스트가 완료된다.
+        Debug.Log(GameManager.Instance.MakeItemBox.completeItemParent.name);
         GameManager.Instance.MakeItemBox.completeItemParent.transform.GetChild(1).GetComponent<GetOutCompleteItem>().getAction = CompleteMakeInven;
     }
     //인벤토리 제작 완료가 되었으면 다음 단계 움집 재료 모으기가 시작함
@@ -205,6 +208,7 @@ public class Chapter1 : ChapterManager, ChapterInterFace
         //델리게이트로 해당 이벤트를 추가함
         GameManager.Instance.MakeItemBox.getOutCompleteItem.dAction = ProduceHouseFromTable;
     }
+    private GrabInteractive_InstallObj obj = null;
     private void ProduceHouseFromTable()
     {
 
@@ -213,9 +217,9 @@ public class Chapter1 : ChapterManager, ChapterInterFace
         if (GameManager.Instance.MakeItemBox.completeItemCode == (int)ItemName.움막)
         {
             Debug.Log("해당 이벤트가 발생함");
-            completeItemCode = GameManager.Instance.MakeItemBox.completeItemCode;
-            Debug.Log(completeItemCode);
             //설치형 아이템에다가 아이템 설치 시 해당 오브젝트가 발생하도록 제작
+            
+            obj = GameManager.Instance.MakeItemBox.completeItem.gameObject.GetComponent<GrabInteractive_InstallObj>();
             GameManager.Instance.MakeItemBox.completeItem.GetComponent<GrabInteractive_InstallObj>().eventAction = CompleteInstallHouse;
             CompleteMakeHouse();
 
@@ -250,16 +254,14 @@ public class Chapter1 : ChapterManager, ChapterInterFace
         AddQuest();
         //움막을 설치하면 완료
     }
-
     //움막설치가 완료됨
     public void CompleteInstallHouse()
     {
-        Debug.Log(GameManager.Instance.PlayStoryManager.storyStep);
         //움막 설치가 완료되면 해당 챕터 완료문구가 뜨고 다음 챕터로 이동함
         if (GameManager.Instance.PlayStoryManager.storyStep == 4)
-        {
+        {    
+            obj.GetComponent<Rigidbody>().isKinematic = false;
             Debug.Log("챕터가 완료되었습니다.");
-
             //챕터 완료 메세지 호출
             messageNum++;
             GameManager.Instance.UiManager.ChangeSubTitleMessageText(subtitleMessageText[messageNum]);

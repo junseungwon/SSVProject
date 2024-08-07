@@ -27,7 +27,8 @@ public class Chapter2 : ChapterManager, ChapterInterFace
     public void ThisChapterPlay()
     {
         //GameManager.Instance.PlayStoryManager.PlayNextChapter();
-      MoveArea();
+        MoveArea();
+        ChangeTitle();
     }
 
 
@@ -49,6 +50,7 @@ public class Chapter2 : ChapterManager, ChapterInterFace
     //해당 지역으로 이동해서 탐험하도록 지시함
     private void MoveArea()
     {
+        ThisMessage();
         GameManager.Instance.PlayMoveGuideManager.GuideNextMovingArea(0, PlayAction);
     }
 
@@ -75,6 +77,10 @@ public class Chapter2 : ChapterManager, ChapterInterFace
     private void CheckQuest(SelectEnterEventArgs arg0)
     {
         CheckItems(int.Parse(arg0.interactor.gameObject.GetComponent<CustomDirController>().grabObject.name), CompleteGrabItems);
+        Debug.Log("아이템");
+        arg0.interactor.gameObject.GetComponent<CustomDirController>().grabObject.GetComponent<XRGrabInteractable>().selectEntered.RemoveAllListeners();
+        //여기서 없애자
+
     }
 
     //(SelectEnterEventArgs arg0) => CheckItems(int.Parse(arg0.interactor.gameObject.name))
@@ -91,7 +97,7 @@ public class Chapter2 : ChapterManager, ChapterInterFace
     private void CompleteGrabItems()
     {
         //추가했던 이벤트들 리셋
-        ItemQuestReset();
+        //ItemQuestReset();
         Debug.Log("아이템 줍기 이벤트가 종료되었습니다.");
         //기존 퀘스트 완료표시
         GameManager.Instance.PlanNote.CompleteQuest();

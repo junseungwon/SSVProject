@@ -14,6 +14,9 @@ public class PlanNote : MonoBehaviour
     [Header("PlanL 퀘스트 TEXT")]
     public string[] planNoteL;
 
+
+    [SerializeField]
+    private TextMeshProUGUI title = null;
     //plan의 단계와 게임안에 단계
     [SerializeField]
     private GameObject planTextUi = null;
@@ -68,6 +71,10 @@ public class PlanNote : MonoBehaviour
         uiText.fontStyle = FontStyles.Italic;
         //AddQuset();
     }
+    public void ChangeTextTitle(string value)
+    {
+        title.text = value;
+    }
     //TEXT내용에서 0을 찾아서 1로 바꿔서 리턴
     private string ChangeFinshText(int patternNum, int value )
     {
@@ -120,7 +127,6 @@ public class PlanNote : MonoBehaviour
     public void ResetTextSetting()
     {
         string[] textArray = CheckPlanNoteTextArray();
-        Debug.Log(planTextUi.transform.childCount);
         for (int i = 0; i < 5; i++)
         {
             //Debug.Log(i);

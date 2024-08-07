@@ -8,6 +8,7 @@ public class ItemGrabInteractive : GrabInteractive_JSW
     public int makeBoxParentNum = -1;
     public Animator anim = null;
 
+    public bool isAnim = true;
     public Vector3 objScale = Vector3.zero;
     private Rigidbody rb = null;
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class ItemGrabInteractive : GrabInteractive_JSW
     }
     void Start()
     {
+        isAnim = true;
         base.Start();
         rb = GetComponent<Rigidbody>();
         grabbable.selectEntered.AddListener(GrabItemBox);

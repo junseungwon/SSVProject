@@ -5,6 +5,8 @@ public class Fish : MonoBehaviour
     public GetAction GetAction = null;
     public int itemCode = 0;
     public int state = 0;
+
+    public GameObject tranObj = null;
     //물체랑 접촉했을 때 아이템이 소모형 아이템이면 흡수 아니면 흡수안함
     private void OnCollisionEnter(Collision collision)
     {
@@ -46,7 +48,11 @@ public class Fish : MonoBehaviour
                 break;
         }
     }
-
+    private void Dead()
+    {
+        Debug.Log(gameObject.name);
+        tranObj.transform.localRotation = Quaternion.Euler(0,180,0);
+    }
     private void DeadFish(int codeName, GameObject obj)
     {
         //기본 상태일 경우 죽은 물고기로 변경
@@ -63,12 +69,13 @@ public class Fish : MonoBehaviour
             }
             GetAction = null;
             state = (int)FishState.Dead;
+            Dead();
+            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
     //나무 찔리는 꼬챙이 상태
     private void SkewerFish(int codeName, GameObject obj)
     {
-        Debug.Log(1);
         //나무가지에 접근
         if (codeName == 100)
         {
@@ -76,25 +83,25 @@ public class Fish : MonoBehaviour
             obj.name = "250";
             transform.parent = obj.transform;
             //물고기가 막대기 자식으로 이동하고 rotation이랑 position변경됨
-            transform.localPosition = new Vector3(0, 0, -0.45f);
-            transform.localRotation = Quaternion.Euler(90, 0, 0);
+            transform.localPosition = new Vector3(0, 1.5f, 0.139f);
+            transform.localRotation = Quaternion.Euler(0, 0, -180);
             state = (int)FishState.Skewer;
         }
     }
     private void BarbecuedFish(int codeName, GameObject obj)
     {
-        Debug.Log(2);
+        Debug.Log(codeName);
         //모닥불에 접근 
         if (codeName == 160)
         {
             Debug.Log("베이쿡 된 상태");
             //물고기의 메테리얼이 변경됨
-            Material[] materials = transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().materials;
+            Material[] materials = transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().materials;
             //물체의 알파값만 변경하고 다시 return
             Color color = materials[1].color;
             color.a = 1f;
             materials[1].color = color;
-            transform.GetChild(1).GetComponent<SkinnedMeshRenderer>().materials = materials;
+            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().materials = materials;
             //이벤트를 실행
             state = (int)FishState.Barbecued;
             PlayerMouth mouth = GameManager.Instance.player.transform.GetChild(5).gameObject.GetComponent<PlayerMouth>();

@@ -16,6 +16,9 @@ public class Chapter4 : ChapterManager, ChapterInterFace
     private GameObject questObject = null;
     [SerializeField]
     private GameObject questInstallSocket = null;
+
+    [SerializeField]
+    private GameObject ship = null;
     private void Awake()
     {
         GameManager.Instance.PlayStoryManager.chapterManager[4] = this.gameObject;
@@ -29,6 +32,8 @@ public class Chapter4 : ChapterManager, ChapterInterFace
     public void ThisChapterPlay()
     {
         MoveToSosArea();
+        ChangeTitle();
+        //ShowShip();
     }
 
     protected override void ListSetting()
@@ -39,11 +44,11 @@ public class Chapter4 : ChapterManager, ChapterInterFace
             InstallFire
         };
     }
-//    처음 스폰 장소로 이동 지시(처음 장소로 이동하세요)
-//  흰색돌을 줍도록 지시함(흰색 돌 0/20개를 주우세요)
-//  흰색돌로 SOS신호를 만들도록 지시(SOS신호를 만들어보세요)
-//  모닥불을 설치하도록 지시함(모닥불을 설치하세요)
-//  엔딩씬!
+    //    처음 스폰 장소로 이동 지시(처음 장소로 이동하세요)
+    //  흰색돌을 줍도록 지시함(흰색 돌 0/20개를 주우세요)
+    //  흰색돌로 SOS신호를 만들도록 지시(SOS신호를 만들어보세요)
+    //  모닥불을 설치하도록 지시함(모닥불을 설치하세요)
+    //  엔딩씬!
     protected override void QuestItemDBSetting()
     {
         //산딸기랑 오디 섭취
@@ -73,7 +78,7 @@ public class Chapter4 : ChapterManager, ChapterInterFace
     private void MakeSosSign(SelectEnterEventArgs arg0)
     {
         //아이템이 들어오면 해당되는 아이템이 흰색돌인지 분석을함
-        if(arg0.interactable.gameObject.name  == "260")
+        if (arg0.interactable.gameObject.name == "260")
         {
             Debug.Log("흰색돌을 추가했습니다.");
             CheckItems(int.Parse(arg0.interactable.gameObject.name), CompleteMakeSosSign);
@@ -94,11 +99,14 @@ public class Chapter4 : ChapterManager, ChapterInterFace
         //퀘스트 완료
         GameManager.Instance.PlanNote.CompleteQuest();
 
+        GameManager.Instance.UiManager.ChangeSubTitleMessageText(subtitleMessageText[messageNum]);
+
+        CompleteGame();
         //퀘스트 스텝 증가
-        GameManager.Instance.PlayStoryManager.NextStoryStep();
+        //GameManager.Instance.PlayStoryManager.NextStoryStep();
 
         //현재 챕터 실행
-        PlayAction();
+        //PlayAction();
     }
     private void InstallFire()
     {
@@ -113,7 +121,7 @@ public class Chapter4 : ChapterManager, ChapterInterFace
     private void CheckQuestItem()
     {
         //충돌 오브젝트가 모닥불일 경우
-        if(questInstallSocket.GetComponent<InstallArea>().colliderObject.name == "160")
+        if (questInstallSocket.GetComponent<InstallArea>().colliderObject.name == "160")
         {
             questInstallSocket.GetComponent<InstallArea>().colliderObject.GetComponent<GrabInteractive_InstallObj>().InstallValue();
             Debug.Log("설치 완료");
@@ -124,9 +132,32 @@ public class Chapter4 : ChapterManager, ChapterInterFace
     {
         Debug.Log("엔딩입니다.");
         //퀘스트 완료
-        GameManager.Instance.PlanNote.CompleteQuest();
+        //GameManager.Instance.PlanNote.CompleteQuest();
         AddMessage();
+        ShowShip();
     }
+
+    private void ShowShip()
+    {
+        ship.SetActive(true);
+        StartCoroutine(CountDown(1.5f, AddMessage));
+        StartCoroutine(CountDown(5f, ()=>GameManager.Instance.UiManager.PlayerFadeInOut(0, 3)));
+        StartCoroutine(CorutineShowShip());
+    }
+
+    private IEnumerator CorutineShowShip()
+    {
+        float maxtime = 10f;
+        float time = 0f;
+        while (maxtime >= time)
+        {
+            Debug.Log("움직이고 있음");
+            ship.transform.position += new Vector3(0, 0, 0.01f);
+            time += 0.1f;
+            yield return new WaitForSeconds(0.1f);
+        }
+        ship.SetActive(false);
+    } 
     private enum QuestStepEnum
     {
         GrabRock, InstallFire

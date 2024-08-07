@@ -16,15 +16,18 @@ public class ItemBoxColider : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        if (other.tag=="LeftHand"||other.tag =="RightHand")
+        if (other.tag=="RHand"||other.tag =="LHand")
         {
             //해당되는 컨트롤러가 잡기 상태가 아닌경우
             //스크립트에 저장된 물체를 가져와서 예시용 물건을 사용한다.
             GameObject playerGrabObj = other.GetComponent<CustomDirController>().grabObject;
-            float selectNum = GameManager.Instance.PlayerController.inputActions.actionMaps[5].actions[0].ReadValue<float>();
+            int num = (other.tag == "LHand") ? 2 : 5;
+            float selectNum = GameManager.Instance.PlayerController.inputActions.actionMaps[num].actions[0].ReadValue<float>();
             if (selectNum < 0.5 && playerGrabObj != null)
             {
                 int parentIndex = transform.parent.GetSiblingIndex();
+                Debug.Log(transform.GetSiblingIndex());
+                Debug.Log(parentIndex);
                 int codeNum = int.Parse(playerGrabObj.name);
                 other.GetComponent<CustomDirController>().grabObject = null;
                 GameManager.Instance.ItemBox.PutItem(parentIndex, codeNum, playerGrabObj);

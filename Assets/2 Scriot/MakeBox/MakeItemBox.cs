@@ -24,7 +24,7 @@ public class MakeItemBox : MonoBehaviour
         Debug.Log("awake실행");
         GameManager.Instance.MakeItemBox = this;
         getOutCompleteItem = completeItemParent.transform.GetChild(1).GetComponent<GetOutCompleteItem>();
-       // gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
     private void Start()
     {
@@ -52,7 +52,14 @@ public class MakeItemBox : MonoBehaviour
         {
             itemCount[num] += 1;
             TextNumUIChange(num);
-            Destroy(item);
+            if(item != null)
+            {
+                Destroy(item);
+            }
+            else
+            {
+                Debug.Log("없어서 삭제 안함");
+            }
             Debug.Log(items[num].name + " " + itemCount[num] + "개를 아이템 생성기계에 넣었습니다.");
         }
         else
@@ -255,6 +262,7 @@ public class MakeItemBox : MonoBehaviour
         completeItemCount = 0;
 
         completeItem = null;
+        //TextCompleteItemNumUIChange();
     }
     public void GetOutCompleteItem()
     {

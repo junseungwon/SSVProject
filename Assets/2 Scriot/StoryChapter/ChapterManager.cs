@@ -13,6 +13,9 @@ public class ChapterManager : MonoBehaviour
 
     protected int messageNum = 0;
 
+    [SerializeField]
+    private string title = null;
+
     //실행할 함수들을 리스트 세팅
     protected virtual void ListSetting()
     {
@@ -43,6 +46,10 @@ public class ChapterManager : MonoBehaviour
     protected void ThisMessage()
     {
         GameManager.Instance.UiManager.ChangeSubTitleMessageText(subtitleMessageText[messageNum]);
+    }
+    protected void ChangeTitle()
+    {
+        GameManager.Instance.PlanNote.ChangeTextTitle(title);
     }
 
     //요구조건이 1개이고 필요 아이템도 1개일 경우 자동으로 필요 정보들을 수정해줌

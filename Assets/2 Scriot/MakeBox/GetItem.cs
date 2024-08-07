@@ -26,7 +26,6 @@ public class GetItem : MonoBehaviour
                 bool isBool= GameManager.Instance.MakeItemBox.PutItem(playerGrabObj.gameObject, this.gameObject.transform.parent.GetSiblingIndex());
                 if (isBool)
                 {
-                    Debug.Log(parentIndex);
                     playerGrabObj.GetComponent<ItemGrabInteractive>().makeBoxParentNum = parentIndex;
                     playerGrabObj.GetComponent<Rigidbody>().isKinematic = true;
                 }

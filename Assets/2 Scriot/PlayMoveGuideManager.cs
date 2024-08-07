@@ -26,7 +26,6 @@ public class PlayMoveGuideManager : MonoBehaviour
         float distance = 100.0f;
         while (distance >= 1.0f)
         {
-            //Debug.Log(distance);
             distance = Vector3.Distance(GameManager.Instance.player.transform.position, transArray[num].position);
             yield return new WaitForSeconds(0.1f);
         }
@@ -52,7 +51,7 @@ public class PlayMoveGuideManager : MonoBehaviour
         }
         //오브젝트 위치 및 회전값 설정
         teleportGudieObj.transform.position = array[num].position;
-        teleportGudieObj.transform.rotation = Quaternion.identity;
+        teleportGudieObj.transform.rotation = array[num].rotation;
         StartCoroutine(CalculateNearPlayerPos(num, action, array));
     }
     //해당되는 배열을 return 
